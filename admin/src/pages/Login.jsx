@@ -26,16 +26,16 @@ export default function Login() {
   };
 
   return (
-    <div style={{ minHeight:'100vh', display:'flex', background:'#F7F6F2' }}>
+    <div style={{ minHeight:'100vh', display:'flex', background:'#F5F5FC' }}>
       {/* Left hero */}
       <div className="hidden lg:flex" style={{
         width:'45%', position:'relative', flexDirection:'column',
         alignItems:'center', justifyContent:'center', padding:'4rem',
-        background:'linear-gradient(145deg,#1E5E52 0%,#2E7D6B 55%,#3D9B85 100%)', overflow:'hidden'
+        background:'linear-gradient(145deg,#3730A3 0%,#4F46E5 55%,#6366F1 100%)', overflow:'hidden'
       }}>
         <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80"
           alt="Travel" style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', opacity:0.15 }} />
-        <div style={{ position:'absolute', inset:0, background:'linear-gradient(145deg,rgba(30,94,82,0.88),rgba(61,155,133,0.8))' }} />
+        <div style={{ position:'absolute', inset:0, background:'linear-gradient(145deg,rgba(55, 48, 163,0.88),rgba(99, 102, 241,0.8))' }} />
         {[...Array(4)].map((_,i) => (
           <motion.div key={i} style={{
             position:'absolute', borderRadius:'50%', background:'rgba(255,255,255,0.1)',
@@ -52,7 +52,7 @@ export default function Login() {
           }}>
             <Shield size={40} color="#fff" />
           </div>
-          <h1 style={{ fontFamily:'Poppins,sans-serif', fontSize:'2.5rem', fontWeight:800, marginBottom:'0.5rem' }}>Globetrotter</h1>
+          <h1 style={{ fontFamily:'Sora,sans-serif', fontSize:'2.5rem', fontWeight:800, marginBottom:'0.5rem' }}>Globetrotter</h1>
           <p style={{ fontSize:'1.25rem', color:'rgba(255,255,255,0.7)', marginBottom:'2.5rem' }}>Admin Console</p>
           <div style={{ display:'flex', flexDirection:'column', gap:'0.75rem', textAlign:'left' }}>
             {FEATURES.map(({ icon:Icon, text }) => (
@@ -76,13 +76,13 @@ export default function Login() {
         <motion.div style={{ width:'100%', maxWidth:420 }}
           initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.5, delay:0.1 }}>
           <div className="lg:hidden" style={{ textAlign:'center', marginBottom:'2rem' }}>
-            <div style={{ width:56, height:56, borderRadius:18, background:'linear-gradient(135deg,#1E5E52,#2E7D6B)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 0.75rem' }}>
+            <div style={{ width:56, height:56, borderRadius:18, background:'linear-gradient(135deg,#3730A3,#4F46E5)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 0.75rem' }}>
               <Shield size={28} color="#fff" />
             </div>
-            <h1 style={{ fontFamily:'Poppins,sans-serif', fontWeight:800, fontSize:'1.25rem', color:'#1E5E52' }}>Globetrotter Admin</h1>
+            <h1 style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:'1.25rem', color:'#3730A3' }}>Globetrotter Admin</h1>
           </div>
 
-          <h2 style={{ fontFamily:'Poppins,sans-serif', fontWeight:700, fontSize:'1.875rem', color:'#1F2937', marginBottom:'0.25rem' }}>Admin Sign In</h2>
+          <h2 style={{ fontFamily:'Sora,sans-serif', fontWeight:700, fontSize:'1.875rem', color:'#1F2937', marginBottom:'0.25rem' }}>Admin Sign In</h2>
           <p style={{ fontSize:'0.875rem', color:'#6B7280', marginBottom:'2rem' }}>Restricted to authorized administrators only</p>
 
           <div className="glass-sm" style={{ padding:'2rem' }}>

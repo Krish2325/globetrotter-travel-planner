@@ -23,7 +23,7 @@ import Profile      from './pages/Profile';
 function ProtectedRoute({ children }) {
   const { admin, loading } = useAuthStore();
   if (loading) return (
-    <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background:'#F7F6F2' }}>
+    <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background:'#F5F5FC' }}>
       <div style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:16 }}>
         <div className="spinner" style={{ width:40, height:40 }} />
         <p style={{ fontSize:'0.875rem', color:'#6B7280', fontWeight:500 }}>Loading Globetrotter Admin...</p>

@@ -35,14 +35,14 @@ export default function Signup() {
   const inp = (f) => (e) => setForm({ ...form, [f]:e.target.value });
 
   return (
-    <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background:'#F7F6F2', padding:'2rem 1.5rem' }}>
+    <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background:'#F5F5FC', padding:'2rem 1.5rem' }}>
       <motion.div style={{ width:'100%', maxWidth:460 }}
         initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }}>
         <div style={{ textAlign:'center', marginBottom:'2rem' }}>
-          <div style={{ width:60, height:60, borderRadius:20, background:'linear-gradient(135deg,#1E5E52,#2E7D6B)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 0.75rem', boxShadow:'0 8px 24px rgba(46,125,107,0.3)' }}>
+          <div style={{ width:60, height:60, borderRadius:20, background:'linear-gradient(135deg,#3730A3,#4F46E5)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 0.75rem', boxShadow:'0 8px 24px rgba(79, 70, 229,0.3)' }}>
             <Shield size={30} color="#fff" />
           </div>
-          <h1 style={{ fontFamily:'Poppins,sans-serif', fontWeight:800, fontSize:'1.875rem', color:'#1F2937' }}>Create Admin Account</h1>
+          <h1 style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:'1.875rem', color:'#1F2937' }}>Create Admin Account</h1>
           <p style={{ fontSize:'0.875rem', color:'#6B7280', marginTop:'0.25rem' }}>Register to manage Globetrotter platform</p>
         </div>
 
@@ -52,7 +52,7 @@ export default function Signup() {
             <div style={{ width:64, height:64, borderRadius:'50%', background:'rgba(34,197,94,0.12)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 1rem' }}>
               <CheckCircle2 size={32} color="#22C55E" />
             </div>
-            <h3 style={{ fontFamily:'Poppins,sans-serif', fontWeight:700, fontSize:'1.25rem', color:'#1F2937', marginBottom:'0.5rem' }}>Account Created!</h3>
+            <h3 style={{ fontFamily:'Sora,sans-serif', fontWeight:700, fontSize:'1.25rem', color:'#1F2937', marginBottom:'0.5rem' }}>Account Created!</h3>
             <p style={{ fontSize:'0.875rem', color:'#6B7280' }}>Redirecting to dashboard...</p>
           </motion.div>
         ) : (
@@ -98,7 +98,7 @@ export default function Signup() {
                 {form.password && (
                   <div style={{ marginTop:'0.5rem' }}>
                     <div style={{ display:'flex', gap:4, marginBottom:4 }}>
-                      {[1,2,3,4].map(n => <div key={n} style={{ flex:1, height:4, borderRadius:4, background: n<=strength ? strengthColor : '#EFEDE7', transition:'all 0.3s' }}/>)}
+                      {[1,2,3,4].map(n => <div key={n} style={{ flex:1, height:4, borderRadius:4, background: n<=strength ? strengthColor : '#ECECF7', transition:'all 0.3s' }}/>)}
                     </div>
                     <p style={{ fontSize:'0.7rem', fontWeight:600, color:strengthColor }}>{strengthLabel}</p>
                   </div>
@@ -128,7 +128,7 @@ export default function Signup() {
             <div className="divider" />
             <p style={{ textAlign:'center', fontSize:'0.875rem', color:'#6B7280' }}>
               Already have an account?{' '}
-              <Link to="/login" style={{ color:'#2E7D6B', fontWeight:600, textDecoration:'none', display:'inline-flex', alignItems:'center', gap:'0.25rem' }}>Sign in <ArrowRight size={14} /></Link>
+              <Link to="/login" style={{ color:'#4F46E5', fontWeight:600, textDecoration:'none', display:'inline-flex', alignItems:'center', gap:'0.25rem' }}>Sign in <ArrowRight size={14} /></Link>
             </p>
           </div>
         )}
