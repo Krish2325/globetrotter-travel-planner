@@ -33,7 +33,7 @@ export default function AdminLogin() {
     <div className="min-h-screen flex" style={{ background: '#F7F6F2' }}>
       {/* Left — hero */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden flex-col items-center justify-center p-16"
-        style={{ background: 'linear-gradient(135deg, #1E5E52 0%, #2E7D6B 50%, #3D9B85 100%)' }}>
+        style={{ background: 'linear-gradient(135deg, #B33E1A 0%, #F2683A 50%, #FB8A4C 100%)' }}>
         <div className="absolute inset-0 opacity-10"
           style={{ backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/svg%3E\")" }} />
         {[...Array(5)].map((_,i) => (
@@ -72,10 +72,10 @@ export default function AdminLogin() {
           {/* Mobile header */}
           <div className="lg:hidden text-center mb-8">
             <div className="w-14 h-14 rounded-2xl mx-auto mb-3 flex items-center justify-center"
-              style={{ background:'linear-gradient(135deg,#1E5E52,#2E7D6B)' }}>
+              style={{ background:'linear-gradient(135deg,#B33E1A,#F2683A)' }}>
               <Shield className="w-7 h-7 text-white" />
             </div>
-            <h1 className="text-xl font-bold font-display" style={{ color:'#1E5E52' }}>Globetrotter Admin</h1>
+            <h1 className="text-xl font-bold font-display" style={{ color:'#B33E1A' }}>Globetrotter Admin</h1>
           </div>
 
           <div className="mb-8">
@@ -85,7 +85,7 @@ export default function AdminLogin() {
 
           <div className="rounded-3xl p-8" style={{
             background:'rgba(255,255,255,0.7)', backdropFilter:'blur(18px)',
-            border:'1px solid rgba(124,154,126,0.2)', boxShadow:'0 8px 32px rgba(31,41,55,0.08)'
+            border:'1px solid rgba(214,122,74,0.2)', boxShadow:'0 8px 32px rgba(31,41,55,0.08)'
           }}>
             <form onSubmit={handleSubmit} className="space-y-5">
               {error && (
@@ -129,10 +129,10 @@ export default function AdminLogin() {
               </motion.button>
             </form>
 
-            <div className="mt-6 pt-6" style={{ borderTop:'1px solid rgba(124,154,126,0.15)' }}>
+            <div className="mt-6 pt-6" style={{ borderTop:'1px solid rgba(214,122,74,0.15)' }}>
               <p className="text-center text-xs" style={{ color:'#9CA3AF' }}>
                 Not an admin?{' '}
-                <Link to="/login" className="font-semibold hover:underline" style={{ color:'#2E7D6B' }}>
+                <Link to="/login" className="font-semibold hover:underline" style={{ color:'#F2683A' }}>
                   Go to user login →
                 </Link>
               </p>
@@ -144,7 +144,7 @@ export default function AdminLogin() {
           </p>
           <p className="text-center text-xs mt-3" style={{ color:'#9CA3AF' }}>
             New administrator?{' '}
-            <Link to="/admin/signup" className="font-semibold hover:underline" style={{ color:'#2E7D6B' }}>
+            <Link to="/admin/signup" className="font-semibold hover:underline" style={{ color:'#F2683A' }}>
               Create admin account →
             </Link>
           </p>

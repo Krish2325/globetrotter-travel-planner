@@ -4,7 +4,7 @@ import { useAdminAuth } from '../useAdminAuth';
 import { motion } from 'framer-motion';
 import { Shield, Mail, Lock, User, Eye, EyeOff, Loader2, BarChart3, Map, Users, CheckCircle2 } from 'lucide-react';
 
-const GLASS = { background:'rgba(255,255,255,0.7)', backdropFilter:'blur(18px)', WebkitBackdropFilter:'blur(18px)', border:'1px solid rgba(124,154,126,0.2)', boxShadow:'0 8px 32px rgba(31,41,55,0.08)' };
+const GLASS = { background:'rgba(255,255,255,0.7)', backdropFilter:'blur(18px)', WebkitBackdropFilter:'blur(18px)', border:'1px solid rgba(214,122,74,0.2)', boxShadow:'0 8px 32px rgba(31,41,55,0.08)' };
 
 const PERKS = [
   { icon:BarChart3, text:'Full platform analytics and insights' },
@@ -55,7 +55,7 @@ export default function AdminSignup() {
     <div className="min-h-screen flex" style={{ background:'#F7F6F2' }}>
       {/* Left panel */}
       <div className="hidden lg:flex lg:w-5/12 relative overflow-hidden flex-col items-center justify-center p-14"
-        style={{ background:'linear-gradient(145deg,#1E5E52 0%,#2E7D6B 55%,#3D9B85 100%)' }}>
+        style={{ background:'linear-gradient(145deg,#B33E1A 0%,#F2683A 55%,#FB8A4C 100%)' }}>
         <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80"
           alt="Admin" className="absolute inset-0 w-full h-full object-cover opacity-15" />
         <div className="absolute inset-0" style={{ background:'linear-gradient(145deg,rgba(30,94,82,0.88),rgba(61,155,133,0.8))' }} />
@@ -95,10 +95,10 @@ export default function AdminSignup() {
 
           <div className="lg:hidden text-center mb-8">
             <div className="w-14 h-14 rounded-2xl mx-auto mb-3 flex items-center justify-center"
-              style={{ background:'linear-gradient(135deg,#1E5E52,#2E7D6B)' }}>
+              style={{ background:'linear-gradient(135deg,#B33E1A,#F2683A)' }}>
               <Shield className="w-7 h-7 text-white" />
             </div>
-            <h1 className="text-xl font-bold font-display" style={{ color:'#1E5E52' }}>Globetrotter Admin</h1>
+            <h1 className="text-xl font-bold font-display" style={{ color:'#B33E1A' }}>Globetrotter Admin</h1>
           </div>
 
           <h1 className="text-3xl font-bold font-display mb-1" style={{ color:'#1F2937' }}>Create Admin Account</h1>
@@ -201,10 +201,10 @@ export default function AdminSignup() {
                 </motion.button>
               </form>
 
-              <div className="mt-6 pt-6" style={{ borderTop:'1px solid rgba(124,154,126,0.15)' }}>
+              <div className="mt-6 pt-6" style={{ borderTop:'1px solid rgba(214,122,74,0.15)' }}>
                 <p className="text-center text-sm" style={{ color:'#6B7280' }}>
                   Already have an account?{' '}
-                  <Link to="/admin/login" className="font-semibold hover:underline" style={{ color:'#2E7D6B' }}>
+                  <Link to="/admin/login" className="font-semibold hover:underline" style={{ color:'#F2683A' }}>
                     Sign in
                   </Link>
                 </p>
@@ -214,7 +214,7 @@ export default function AdminSignup() {
 
           <p className="text-center text-xs mt-5" style={{ color:'#9CA3AF' }}>
             Not an admin?{' '}
-            <Link to="/login" className="font-semibold hover:underline" style={{ color:'#2E7D6B' }}>
+            <Link to="/login" className="font-semibold hover:underline" style={{ color:'#F2683A' }}>
               Go to user login
             </Link>
           </p>
