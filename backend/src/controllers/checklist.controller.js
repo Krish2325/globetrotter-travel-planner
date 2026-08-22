@@ -1,12 +1,18 @@
 const prisma = require('../lib/prisma');
 
-// GET /api/checklists?tripId=xxx
+// GET /api/checklists?tripId=xxx  — omit tripId to get all of the current user's checklists
 exports.getChecklists = async (req, res) => {
   const { tripId } = req.query;
-  if (!tripId) return res.status(400).json({ error: 'tripId required' });
+  const where = tripId
+    ? { tripId, trip: { userId: req.user.id } }
+    : { userId: req.user.id };
   const lists = await prisma.checklist.findMany({
-    where: { tripId },
-    include: { items: { orderBy: { order: 'asc' } } },
+    where,
+    include: {
+      items: { orderBy: { order: 'asc' } },
+      trip: { select: { id: true, title: true } },
+    },
+    orderBy: { createdAt: 'desc' },
   });
   res.json(lists);
 };
