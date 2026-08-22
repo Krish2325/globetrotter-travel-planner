@@ -43,19 +43,19 @@ function AdminSidebar({ admin, adminLogout, close }) {
 
   return (
     <aside className="flex flex-col h-full w-64 shrink-0" style={{
-      background: 'rgba(247,246,242,0.92)',
+      background: 'rgba(245, 245, 252,0.92)',
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
-      borderRight: '1px solid rgba(124,154,126,0.12)',
+      borderRight: '1px solid rgba(99, 102, 241,0.12)',
     }}>
       {/* Logo */}
-      <div className="flex items-center gap-3 px-5 py-5" style={{ borderBottom:'1px solid rgba(124,154,126,0.1)' }}>
+      <div className="flex items-center gap-3 px-5 py-5" style={{ borderBottom:'1px solid rgba(99, 102, 241,0.1)' }}>
         <div className="w-9 h-9 rounded-2xl flex items-center justify-center shadow-lg"
-          style={{ background:'linear-gradient(135deg,#1E5E52,#2E7D6B)' }}>
+          style={{ background:'linear-gradient(135deg,#3730A3,#4F46E5)' }}>
           <Shield className="w-4 h-4 text-white" />
         </div>
         <div>
-          <span className="text-base font-bold font-display" style={{ color:'#1E5E52' }}>Globetrotter</span>
+          <span className="text-base font-bold font-display text-gradient">Globetrotter</span>
           <p className="text-[10px] -mt-0.5 font-semibold uppercase tracking-widest" style={{ color:'#9CA3AF' }}>Admin Console</p>
         </div>
       </div>
@@ -73,7 +73,7 @@ function AdminSidebar({ admin, adminLogout, close }) {
                   {({ isActive }) => (
                     <>
                       <div className={`w-7 h-7 rounded-xl flex items-center justify-center transition-all ${isActive ? 'shadow-md' : ''}`}
-                        style={{ background: isActive ? 'linear-gradient(135deg,#2E7D6B,#3D9B85)' : 'transparent' }}>
+                        style={{ background: isActive ? 'linear-gradient(135deg,#4F46E5,#6366F1)' : 'transparent' }}>
                         <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : ''}`}
                           style={{ color: isActive ? undefined : '#6B7280' }} />
                       </div>
@@ -88,7 +88,7 @@ function AdminSidebar({ admin, adminLogout, close }) {
       </nav>
 
       {/* Logout + user */}
-      <div className="px-3 pb-4 space-y-2" style={{ borderTop:'1px solid rgba(124,154,126,0.1)', paddingTop:'0.75rem' }}>
+      <div className="px-3 pb-4 space-y-2" style={{ borderTop:'1px solid rgba(99, 102, 241,0.1)', paddingTop:'0.75rem' }}>
         <button onClick={handleLogout} className="sidebar-link w-full" style={{ color:'#EF4444' }}>
           <div className="w-7 h-7 rounded-xl flex items-center justify-center">
             <LogOut className="w-3.5 h-3.5" />
@@ -96,15 +96,15 @@ function AdminSidebar({ admin, adminLogout, close }) {
           Sign Out
         </button>
         <div className="flex items-center gap-3 px-3 py-3 rounded-2xl" style={{
-          background:'rgba(46,125,107,0.07)', border:'1px solid rgba(124,154,126,0.18)'
+          background:'rgba(79, 70, 229,0.07)', border:'1px solid rgba(99, 102, 241,0.18)'
         }}>
           <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0"
-            style={{ background:'linear-gradient(135deg,#1E5E52,#2E7D6B)' }}>
+            style={{ background:'linear-gradient(135deg,#3730A3,#4F46E5)' }}>
             {admin?.name?.[0]?.toUpperCase() || 'A'}
           </div>
           <div className="min-w-0">
             <p className="text-sm font-semibold truncate" style={{ color:'#1F2937' }}>{admin?.name || 'Admin'}</p>
-            <p className="text-[10px] truncate font-medium" style={{ color:'#2E7D6B' }}>Administrator</p>
+            <p className="text-[10px] truncate font-medium" style={{ color:'#4F46E5' }}>Administrator</p>
           </div>
         </div>
       </div>
@@ -117,7 +117,7 @@ export default function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background:'#F7F6F2' }}>
+    <div className="flex h-screen overflow-hidden" style={{ background:'#F5F5FC' }}>
       {/* Desktop sidebar */}
       <div className="hidden md:flex flex-col h-full shrink-0">
         <AdminSidebar admin={admin} adminLogout={adminLogout} close={() => {}} />
@@ -141,8 +141,8 @@ export default function AdminLayout() {
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Topbar */}
         <header className="sticky top-0 z-30 flex items-center gap-4 px-6 py-3.5" style={{
-          background:'rgba(247,246,242,0.9)', backdropFilter:'blur(20px)',
-          WebkitBackdropFilter:'blur(20px)', borderBottom:'1px solid rgba(124,154,126,0.1)'
+          background:'rgba(245, 245, 252,0.9)', backdropFilter:'blur(20px)',
+          WebkitBackdropFilter:'blur(20px)', borderBottom:'1px solid rgba(99, 102, 241,0.1)'
         }}>
           <button onClick={() => setSidebarOpen(true)} className="md:hidden btn-icon">
             <Menu className="w-5 h-5" />
@@ -162,7 +162,7 @@ export default function AdminLayout() {
             <button className="btn-icon relative">
               <Bell className="w-4 h-4" />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full border-2 border-white"
-                style={{ background:'#2E7D6B' }} />
+                style={{ background:'#4F46E5' }} />
             </button>
           </div>
         </header>
