@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,10 +8,10 @@
 :root {
   --bg-primary: #F7F6F2;
   --bg-secondary: #EFEDE7;
-  --sage: #2E7D6B;
-  --sage-light: #A7C4A0;
-  --sage-dark: #1E5E52;
-  --sage-soft: #3D9B85;
+  --sage: #F2683A;
+  --sage-light: #FFC9A3;
+  --sage-dark: #B33E1A;
+  --sage-soft: #FB8A4C;
   --text-primary: #1F2937;
   --text-secondary: #6B7280;
   --text-muted: #9CA3AF;
@@ -33,7 +33,7 @@ html,
 body,
 #root {
   height: 100%;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Manrope', sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
