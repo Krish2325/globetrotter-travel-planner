@@ -67,6 +67,10 @@ model Trip {
   communityShares CommunityShare[]
   tripCopies      TripCopy[]
 
+  @@index([userId])
+  @@index([isPublic, status])
+  @@index([isTrending, popularity])
+  @@index([createdAt])
   @@map("trips")
 }
 
@@ -105,6 +109,8 @@ model Stop {
   city           City           @relation(fields: [cityId], references: [id])
   stopActivities StopActivity[]
 
+  @@index([tripId])
+  @@index([cityId])
   @@map("stops")
 }
 
@@ -127,6 +133,7 @@ model Activity {
   city           City           @relation(fields: [cityId], references: [id])
   stopActivities StopActivity[]
 
+  @@index([cityId])
   @@map("activities")
 }
 
@@ -182,6 +189,7 @@ model Expense {
 
   trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
 
+  @@index([tripId])
   @@map("expenses")
 }
 
@@ -198,6 +206,8 @@ model Checklist {
   user  User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   items ChecklistItem[]
 
+  @@index([tripId])
+  @@index([userId])
   @@map("checklists")
 }
 
@@ -227,6 +237,8 @@ model Note {
   trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([tripId])
+  @@index([userId])
   @@map("notes")
 }
 
@@ -247,6 +259,9 @@ model CommunityShare {
   trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([tripId])
+  @@index([userId])
+  @@index([createdAt])
   @@map("community_shares")
 }
 
@@ -261,5 +276,7 @@ model TripCopy {
   originalTrip Trip @relation(fields: [originalTripId], references: [id], onDelete: Cascade)
   copiedBy     User @relation(fields: [copiedByUserId], references: [id], onDelete: Cascade)
 
+  @@index([originalTripId])
+  @@index([copiedByUserId])
   @@map("trip_copies")
 }

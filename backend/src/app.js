@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 
+const prisma = require('./lib/prisma');
+
 const authRoutes = require('./routes/auth.routes');
 const tripRoutes = require('./routes/trip.routes');
 const stopRoutes = require('./routes/stop.routes');
@@ -56,8 +58,26 @@ app.use((req, _res, next) => {
   next();
 });
 
-// ── Health check ──────────────────────────────────────────────────────────────
-app.get('/health', (_req, res) => res.json({ status: 'ok', timestamp: new Date() }));
+// ── Health check (pings the DB and reports round-trip latency) ────────────────
+app.get('/health', async (_req, res) => {
+  const startedAt = Date.now();
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    res.json({
+      status: 'ok',
+      db: { connected: true, latencyMs: Date.now() - startedAt },
+      uptimeSeconds: Math.round(process.uptime()),
+      timestamp: new Date(),
+    });
+  } catch (err) {
+    res.status(503).json({
+      status: 'error',
+      db: { connected: false, error: err.message },
+      uptimeSeconds: Math.round(process.uptime()),
+      timestamp: new Date(),
+    });
+  }
+});
 
 // ── API Routes ────────────────────────────────────────────────────────────────
 app.use('/api/auth', authRoutes);

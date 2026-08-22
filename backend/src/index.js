@@ -21,9 +21,21 @@ async function main() {
     await prisma.$connect();
     console.log('✅ Database connected (SQLite)');
 
-    app.listen(PORT, '127.0.0.1', () => {
+    const server = app.listen(PORT, '127.0.0.1', () => {
       console.log(`🚀 Globetrotter API running on http://127.0.0.1:${PORT}`);
     });
+
+    // ── Graceful shutdown — stop accepting new requests, then close the DB pool ──
+    const shutdown = async (signal) => {
+      console.log(`\n${signal} received — shutting down gracefully...`);
+      server.close(async () => {
+        await prisma.$disconnect();
+        console.log('✅ Database connection closed. Bye!');
+        process.exit(0);
+      });
+    };
+    process.on('SIGTERM', () => shutdown('SIGTERM'));
+    process.on('SIGINT', () => shutdown('SIGINT'));
   } catch (err) {
     console.error('❌ Failed to connect to database:', err);
     process.exit(1);
