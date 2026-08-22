@@ -1,0 +1,161 @@
+# ╔══════════════════════════════════════════════════════════════════════════════╗
+# ║               GLOBETROTTER — Dependency Reference (requirements.txt)           ║
+# ║  Node.js projects use package.json — this file documents ALL dependencies  ║
+# ║  across all three modules for quick reference and onboarding.               ║
+# ╚══════════════════════════════════════════════════════════════════════════════╝
+#
+# Project Structure:
+#   globetrotter-odoo-hackathon/
+#   ├── backend/    → REST API (Node.js + Express + Prisma + MySQL)
+#   ├── frontend/   → User App  (React + Vite + Tailwind)  → port 5173
+#   └── admin/      → Admin Panel (React + Vite + Tailwind + Zustand) → port 5174
+#
+# ─────────────────────────────────────────────────────────────────────────────
+# RUNTIME REQUIREMENTS
+# ─────────────────────────────────────────────────────────────────────────────
+# Node.js  >= 18.0.0
+# npm      >= 9.0.0
+#
+
+# ─────────────────────────────────────────────────────────────────────────────
+# BACKEND  (backend/package.json)
+# ─────────────────────────────────────────────────────────────────────────────
+
+[backend:dependencies]
+@prisma/client==5.14.0          # Prisma ORM client (type-safe DB access)
+bcryptjs==2.4.3                 # Password hashing (bcrypt algorithm)
+cors==2.8.5                     # Express CORS middleware
+dotenv==16.4.5                  # .env file loader
+express==4.19.2                 # HTTP server framework
+jsonwebtoken==9.0.2             # JWT creation & verification
+nodemailer==6.9.14              # Email sending via Gmail SMTP
+uuid==11.0.0                    # UUID v4 generation (email tokens)
+
+[backend:devDependencies]
+nodemon==3.1.4                  # Auto-restart on file changes
+prisma==5.14.0                  # Prisma CLI (migrate, generate, studio, seed)
+
+# ─────────────────────────────────────────────────────────────────────────────
+# FRONTEND  (frontend/package.json)  — User Application
+# ─────────────────────────────────────────────────────────────────────────────
+
+[frontend:dependencies]
+react==19.2.5                   # UI library (latest)
+react-dom==19.2.5               # React DOM renderer
+react-router-dom==7.15.0        # Client-side routing
+axios==1.16.0                   # HTTP client (API calls to backend)
+framer-motion==12.38.0          # Animations & page transitions
+recharts==3.8.1                 # Chart library (pie, bar, area, line)
+leaflet==1.9.4                  # Interactive maps (OpenStreetMap)
+react-leaflet==5.0.0            # React bindings for Leaflet
+lucide-react==1.14.0            # Icon library
+date-fns==4.1.0                 # Date formatting & manipulation
+tailwindcss==3.4.19             # Utility-first CSS framework
+postcss==8.5.14                 # CSS post-processor (required by Tailwind)
+autoprefixer==10.5.0            # PostCSS plugin for vendor prefixes
+
+# Radix UI headless components (unstyled, accessible)
+@radix-ui/react-dialog==1.1.15
+@radix-ui/react-dropdown-menu==2.1.16
+@radix-ui/react-progress==1.1.8
+@radix-ui/react-select==2.2.6
+@radix-ui/react-tabs==1.1.13
+@radix-ui/react-toast==1.2.15
+
+[frontend:devDependencies]
+vite==8.0.10                    # Build tool & dev server
+@vitejs/plugin-react==6.0.1     # Vite plugin for React (Babel/SWC)
+@eslint/js==10.0.1              # ESLint core (JavaScript)
+eslint==10.2.1                  # Linter
+eslint-plugin-react-hooks==7.1.1   # React hooks lint rules
+eslint-plugin-react-refresh==0.5.2 # Fast Refresh lint rules
+globals==17.5.0                 # Global variable definitions for ESLint
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ADMIN PANEL  (admin/package.json)  — Standalone Admin Application
+# ─────────────────────────────────────────────────────────────────────────────
+
+[admin:dependencies]
+react==19.2.5                   # UI library
+react-dom==19.2.5               # React DOM renderer
+react-router-dom==7.15.0        # Client-side routing (basename="/admin")
+axios==1.16.0                   # HTTP client (proxies /api → backend:5000)
+framer-motion==12.38.0          # Page transitions & micro-animations
+recharts==3.8.1                 # Analytics charts (area, bar, pie, line)
+lucide-react==1.14.0            # Icon library (sidebar + page icons)
+zustand==5.0.13                 # Lightweight global state (auth store + persist)
+date-fns==4.1.0                 # Date formatting
+
+[admin:devDependencies]
+vite==8.0.10                    # Build tool & dev server (port 5174)
+@vitejs/plugin-react==6.0.1     # Vite plugin for React
+tailwindcss==3.4.19             # Utility-first CSS framework
+postcss==8.5.14                 # CSS post-processor (required by Tailwind)
+autoprefixer==10.5.0            # PostCSS vendor prefix plugin
+@eslint/js==10.0.1              # ESLint core
+eslint==10.2.1                  # Linter
+eslint-plugin-react-hooks==7.1.1
+eslint-plugin-react-refresh==0.5.2
+globals==17.5.0
+
+# ─────────────────────────────────────────────────────────────────────────────
+# SERVICES & THIRD-PARTY APIs  (all FREE tier)
+# ─────────────────────────────────────────────────────────────────────────────
+# Database   : MySQL via PlanetScale / Railway.app (production) | local MySQL (dev)
+# Maps       : OpenStreetMap — via Leaflet.js (no API key needed)
+# Email      : Gmail SMTP via Nodemailer (free with App Password)
+# Fonts      : Google Fonts — Poppins + Inter (CDN, free)
+# Icons      : Lucide React (MIT open source)
+# Hosting FE : Vercel (free tier) → user frontend
+# Hosting BE : Render.com (free tier — 750 hrs/month)
+# Hosting ADM: Vercel (free tier) → admin panel (separate deployment)
+# CI/CD      : GitHub Actions (free for public repos)
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ENVIRONMENT VARIABLES  (backend/.env)
+# ─────────────────────────────────────────────────────────────────────────────
+# DATABASE_URL      → MySQL connection string (Prisma)
+# JWT_SECRET        → Secret key for JWT token signing
+# EMAIL_USER        → Gmail address for Nodemailer
+# EMAIL_PASS        → Gmail App Password (not account password)
+# ADMIN_INVITE_KEY  → (removed) Admin signup is now open
+
+# ─────────────────────────────────────────────────────────────────────────────
+# QUICK SETUP COMMANDS
+# ─────────────────────────────────────────────────────────────────────────────
+# 1. Backend:
+#    cd backend
+#    npm install
+#    cp .env.example .env        # edit .env with your DB + email values
+#    npx prisma db push          # creates DB schema
+#    node prisma/seed.js         # seeds cities + activities
+#    npm run dev                 # → http://localhost:5000
+#
+# 2. Frontend (User App):
+#    cd frontend
+#    npm install
+#    npm run dev                 # → http://localhost:5173
+#
+# 3. Admin Panel:
+#    cd admin
+#    npm install
+#    npm run dev                 # → http://localhost:5174/admin/login
+#
+# ─────────────────────────────────────────────────────────────────────────────
+# ADMIN PANEL ROUTES
+# ─────────────────────────────────────────────────────────────────────────────
+# http://localhost:5174/admin/login          → Admin login
+# http://localhost:5174/admin/signup         → Admin registration
+# http://localhost:5174/admin/dashboard      → Overview + charts
+# http://localhost:5174/admin/trips          → Manage trips
+# http://localhost:5174/admin/packages       → Trip packages
+# http://localhost:5174/admin/cities         → Popular cities
+# http://localhost:5174/admin/activities     → Activities management
+# http://localhost:5174/admin/checklists     → Seasonal packing templates
+# http://localhost:5174/admin/analytics      → Analytics & trends
+# http://localhost:5174/admin/users          → User management
+# http://localhost:5174/admin/community      → Community moderation
+# http://localhost:5174/admin/reports        → Reports & exports
+# http://localhost:5174/admin/notifications  → Notification feed
+# http://localhost:5174/admin/settings       → Platform settings
+# http://localhost:5174/admin/profile        → Admin profile

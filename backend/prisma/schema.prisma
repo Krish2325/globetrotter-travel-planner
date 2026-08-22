@@ -1,0 +1,265 @@
+// Globetrotter Prisma Schema — SQLite (dev) / switch provider to mysql for production
+// SQLite: no @db.* annotations, no native enums (use String), Decimal → Float
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Users ────────────────────────────────────────────────────────────────────
+model User {
+  id              String   @id @default(uuid())
+  name            String
+  email           String   @unique
+  passwordHash    String
+  avatarUrl       String?
+  isEmailVerified Boolean  @default(false)
+  emailToken      String?  @unique
+  role            String   @default("USER")    // USER | ADMIN
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  trips           Trip[]
+  notes           Note[]
+  checklists      Checklist[]
+  communityShares CommunityShare[]
+  tripCopies      TripCopy[]
+
+  @@map("users")
+}
+
+// ─── Trips ────────────────────────────────────────────────────────────────────
+model Trip {
+  id               String   @id @default(uuid())
+  userId           String
+  title            String
+  description      String?
+  startingLocation String?
+  destination      String?
+  durationDays     Int?
+  packageType      String?  // LUXURY|BUDGET|ADVENTURE|FAMILY|HONEYMOON|CULTURAL
+  basePrice        Float?
+  bestSeason       String?
+  coverImage       String?
+  images           String?  // comma-separated URLs or JSON
+  rating           Float    @default(0.0)
+  views            Int      @default(0)
+  popularity       Int      @default(0)
+  isTrending       Boolean  @default(false)
+  maxPeople        Int?
+  startDate        DateTime
+  endDate          DateTime
+  isPublic         Boolean  @default(false)
+  status           String   @default("PLANNING")    // PLANNING|CONFIRMED|ONGOING|COMPLETED|CANCELLED|AVAILABLE
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  stops           Stop[]
+  budget          Budget?
+  expenses        Expense[]
+  checklists      Checklist[]
+  notes           Note[]
+  communityShares CommunityShare[]
+  tripCopies      TripCopy[]
+
+  @@map("trips")
+}
+
+// ─── Cities ───────────────────────────────────────────────────────────────────
+model City {
+  id          String  @id @default(uuid())
+  name        String
+  country     String
+  countryCode String
+  latitude    Float
+  longitude   Float
+  imageUrl    String?
+  description String?
+  timezone    String?
+
+  stops      Stop[]
+  activities Activity[]
+
+  @@unique([name, country])
+  @@map("cities")
+}
+
+// ─── Stops ────────────────────────────────────────────────────────────────────
+model Stop {
+  id        String    @id @default(uuid())
+  tripId    String
+  cityId    String
+  dayNumber Int
+  arrivalAt DateTime?
+  departAt  DateTime?
+  notes     String?
+  order     Int       @default(0)
+  createdAt DateTime  @default(now())
+
+  trip           Trip           @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  city           City           @relation(fields: [cityId], references: [id])
+  stopActivities StopActivity[]
+
+  @@map("stops")
+}
+
+// ─── Activities ───────────────────────────────────────────────────────────────
+model Activity {
+  id           String   @id @default(uuid())
+  cityId       String
+  name         String
+  description  String?
+  category     String   // SIGHTSEEING|FOOD|ADVENTURE|CULTURE|SHOPPING|NIGHTLIFE|RELAXATION|TRANSPORT|ACCOMMODATION|OTHER
+  address      String?
+  latitude     Float?
+  longitude    Float?
+  durationMin  Int?
+  costEstimate Float?
+  imageUrl     String?
+  externalUrl  String?
+  createdAt    DateTime @default(now())
+
+  city           City           @relation(fields: [cityId], references: [id])
+  stopActivities StopActivity[]
+
+  @@map("activities")
+}
+
+// ─── Stop Activities (junction) ───────────────────────────────────────────────
+model StopActivity {
+  id         String    @id @default(uuid())
+  stopId     String
+  activityId String
+  startTime  DateTime?
+  endTime    DateTime?
+  notes      String?
+  order      Int       @default(0)
+
+  stop     Stop     @relation(fields: [stopId], references: [id], onDelete: Cascade)
+  activity Activity @relation(fields: [activityId], references: [id])
+
+  @@unique([stopId, activityId])
+  @@map("stop_activities")
+}
+
+// ─── Budgets ──────────────────────────────────────────────────────────────────
+model Budget {
+  id            String   @id @default(uuid())
+  tripId        String   @unique
+  totalBudget   Float
+  currency      String   @default("INR")
+  accommodation Float?
+  food          Float?
+  transport     Float?
+  activities    Float?
+  shopping      Float?
+  miscellaneous Float?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
+
+  @@map("budgets")
+}
+
+// ─── Expenses ─────────────────────────────────────────────────────────────────
+model Expense {
+  id         String   @id @default(uuid())
+  tripId     String
+  title      String
+  amount     Float
+  currency   String   @default("INR")
+  category   String   // ACCOMMODATION|FOOD|TRANSPORT|ACTIVITIES|SHOPPING|MISCELLANEOUS
+  date       DateTime
+  notes      String?
+  receiptUrl String?
+  createdAt  DateTime @default(now())
+
+  trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
+
+  @@map("expenses")
+}
+
+// ─── Checklists ───────────────────────────────────────────────────────────────
+model Checklist {
+  id        String   @id @default(uuid())
+  tripId    String
+  userId    String
+  title     String
+  category  String   @default("PACKING")    // PACKING|TODO|DOCUMENTS|CUSTOM
+  createdAt DateTime @default(now())
+
+  trip  Trip           @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  user  User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items ChecklistItem[]
+
+  @@map("checklists")
+}
+
+model ChecklistItem {
+  id          String   @id @default(uuid())
+  checklistId String
+  label       String
+  isChecked   Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  checklist Checklist @relation(fields: [checklistId], references: [id], onDelete: Cascade)
+
+  @@map("checklist_items")
+}
+
+// ─── Notes ────────────────────────────────────────────────────────────────────
+model Note {
+  id        String   @id @default(uuid())
+  tripId    String
+  userId    String
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notes")
+}
+
+// ─── Community Shares ─────────────────────────────────────────────────────────
+model CommunityShare {
+  id          String   @id @default(uuid())
+  tripId      String
+  userId      String
+  slug        String   @unique
+  title       String
+  description String?
+  tags        String?
+  likesCount  Int      @default(0)
+  viewsCount  Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("community_shares")
+}
+
+// ─── Trip Copies ──────────────────────────────────────────────────────────────
+model TripCopy {
+  id             String   @id @default(uuid())
+  originalTripId String
+  copiedByUserId String
+  newTripId      String?
+  createdAt      DateTime @default(now())
+
+  originalTrip Trip @relation(fields: [originalTripId], references: [id], onDelete: Cascade)
+  copiedBy     User @relation(fields: [copiedByUserId], references: [id], onDelete: Cascade)
+
+  @@map("trip_copies")
+}
