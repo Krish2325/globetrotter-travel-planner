@@ -42,7 +42,7 @@ model Trip {
   destination      String?
   durationDays     Int?
   packageType      String?  // LUXURY|BUDGET|ADVENTURE|FAMILY|HONEYMOON|CULTURAL
-  basePrice        Float?
+  basePrice        Int?     // minor units (e.g. paise) — SQLite has no exact Decimal type
   bestSeason       String?
   coverImage       String?
   images           String?  // comma-separated URLs or JSON
@@ -155,14 +155,14 @@ model StopActivity {
 model Budget {
   id            String   @id @default(uuid())
   tripId        String   @unique
-  totalBudget   Float
+  totalBudget   Int      // minor units (e.g. paise)
   currency      String   @default("INR")
-  accommodation Float?
-  food          Float?
-  transport     Float?
-  activities    Float?
-  shopping      Float?
-  miscellaneous Float?
+  accommodation Int?
+  food          Int?
+  transport     Int?
+  activities    Int?
+  shopping      Int?
+  miscellaneous Int?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
@@ -176,7 +176,7 @@ model Expense {
   id         String   @id @default(uuid())
   tripId     String
   title      String
-  amount     Float
+  amount     Int      // minor units (e.g. paise)
   currency   String   @default("INR")
   category   String   // ACCOMMODATION|FOOD|TRANSPORT|ACTIVITIES|SHOPPING|MISCELLANEOUS
   date       DateTime

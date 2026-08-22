@@ -1,5 +1,6 @@
 const prisma = require('../lib/prisma');
 const { handleError } = require('../lib/errors');
+const { toMinorUnits, toDisplay } = require('../lib/money');
 
 const ownsTrip = (tripId, userId) => prisma.trip.findFirst({ where: { id: tripId, userId } });
 
@@ -10,7 +11,7 @@ exports.getExpenses = async (req, res, next) => {
     if (!tripId) return res.status(400).json({ error: 'tripId required' });
     if (!(await ownsTrip(tripId, req.user.id))) return res.status(404).json({ error: 'Trip not found' });
     const expenses = await prisma.expense.findMany({ where: { tripId }, orderBy: { date: 'desc' } });
-    res.json(expenses);
+    res.json(toDisplay(expenses));
   } catch (err) { handleError(err, res, next); }
 };
 
@@ -25,7 +26,7 @@ exports.createExpense = async (req, res, next) => {
     const expense = await prisma.expense.create({
       data: {
         tripId, title,
-        amount: parseFloat(amount),
+        amount: toMinorUnits(amount),
         currency: currency || 'INR',
         category,
         date: new Date(date),
@@ -33,7 +34,7 @@ exports.createExpense = async (req, res, next) => {
         receiptUrl,
       },
     });
-    res.status(201).json(expense);
+    res.status(201).json(toDisplay(expense));
   } catch (err) { handleError(err, res, next); }
 };
 
@@ -44,10 +45,10 @@ exports.updateExpense = async (req, res, next) => {
     if (!existing) return res.status(404).json({ error: 'Expense not found' });
 
     const data = { ...req.body };
-    if (data.amount != null) data.amount = parseFloat(data.amount);
+    if (data.amount != null) data.amount = toMinorUnits(data.amount);
     if (data.date) data.date = new Date(data.date);
     const expense = await prisma.expense.update({ where: { id: req.params.id }, data });
-    res.json(expense);
+    res.json(toDisplay(expense));
   } catch (err) { handleError(err, res, next); }
 };
 

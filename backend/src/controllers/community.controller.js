@@ -1,6 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 const prisma = require('../lib/prisma');
 const { handleError } = require('../lib/errors');
+const { toDisplay } = require('../lib/money');
 
 // GET /api/community — all public shares
 exports.getPublicShares = async (req, res, next) => {
@@ -15,7 +16,7 @@ exports.getPublicShares = async (req, res, next) => {
       skip,
       take: Number(limit),
     });
-    res.json(shares);
+    res.json(toDisplay(shares));
   } catch (err) { handleError(err, res, next); }
 };
 
@@ -39,7 +40,7 @@ exports.getShareBySlug = async (req, res, next) => {
     if (!share) return res.status(404).json({ error: 'Share not found' });
 
     await prisma.communityShare.update({ where: { id: share.id }, data: { viewsCount: { increment: 1 } } });
-    res.json(share);
+    res.json(toDisplay(share));
   } catch (err) { handleError(err, res, next); }
 };
 

@@ -1,5 +1,6 @@
 const prisma = require("../lib/prisma");
 const { handleError } = require("../lib/errors");
+const { toDisplay } = require("../lib/money");
 
 // GET /api/public/trips?sort=popular|trending|newest&season=&type=&q=&limit=
 exports.getPublicTrips = async (req, res, next) => {
@@ -27,7 +28,7 @@ exports.getPublicTrips = async (req, res, next) => {
       prisma.trip.findMany({ where, orderBy, skip, take: parseInt(limit) }),
       prisma.trip.count({ where }),
     ]);
-    res.json({ trips, total, page: parseInt(page) });
+    res.json(toDisplay({ trips, total, page: parseInt(page) }));
   } catch (err) { handleError(err, res, next); }
 };
 
@@ -39,7 +40,7 @@ exports.getRecommendedTrips = async (req, res, next) => {
       orderBy: [{ isTrending: "desc" }, { popularity: "desc" }, { rating: "desc" }],
       take: 10,
     });
-    res.json(trips);
+    res.json(toDisplay(trips));
   } catch (err) { handleError(err, res, next); }
 };
 
@@ -51,7 +52,7 @@ exports.getActiveTrips = async (req, res, next) => {
       orderBy: { updatedAt: "desc" },
       take: 20,
     });
-    res.json(trips);
+    res.json(toDisplay(trips));
   } catch (err) { handleError(err, res, next); }
 };
 
@@ -63,7 +64,7 @@ exports.getTrendingTrips = async (req, res, next) => {
       orderBy: { popularity: "desc" },
       take: 10,
     });
-    res.json(trips);
+    res.json(toDisplay(trips));
   } catch (err) { handleError(err, res, next); }
 };
 
@@ -132,6 +133,6 @@ exports.globalSearch = async (req, res, next) => {
         take: 5,
       }),
     ]);
-    res.json({ trips, cities, activities });
+    res.json(toDisplay({ trips, cities, activities }));
   } catch (err) { handleError(err, res, next); }
 };

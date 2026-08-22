@@ -1,7 +1,6 @@
 const prisma = require('../lib/prisma');
 const { handleError } = require('../lib/errors');
-
-const toFloat = (v) => (v != null && v !== '' ? parseFloat(v) : undefined);
+const { toMinorUnits, toDisplay } = require('../lib/money');
 
 const ownsTrip = (tripId, userId) => prisma.trip.findFirst({ where: { id: tripId, userId } });
 
@@ -11,7 +10,7 @@ exports.getBudget = async (req, res, next) => {
     if (!(await ownsTrip(req.params.tripId, req.user.id))) return res.status(404).json({ error: 'Trip not found' });
     const budget = await prisma.budget.findUnique({ where: { tripId: req.params.tripId } });
     if (!budget) return res.status(404).json({ error: 'Budget not found' });
-    res.json(budget);
+    res.json(toDisplay(budget));
   } catch (err) { handleError(err, res, next); }
 };
 
@@ -26,17 +25,17 @@ exports.createBudget = async (req, res, next) => {
     const budget = await prisma.budget.create({
       data: {
         tripId,
-        totalBudget: parseFloat(totalBudget),
+        totalBudget: toMinorUnits(totalBudget),
         currency: currency || 'INR',
-        accommodation: toFloat(accommodation),
-        food: toFloat(food),
-        transport: toFloat(transport),
-        activities: toFloat(activities),
-        shopping: toFloat(shopping),
-        miscellaneous: toFloat(miscellaneous),
+        accommodation: toMinorUnits(accommodation),
+        food: toMinorUnits(food),
+        transport: toMinorUnits(transport),
+        activities: toMinorUnits(activities),
+        shopping: toMinorUnits(shopping),
+        miscellaneous: toMinorUnits(miscellaneous),
       },
     });
-    res.status(201).json(budget);
+    res.status(201).json(toDisplay(budget));
   } catch (err) { handleError(err, res, next); }
 };
 
@@ -46,10 +45,10 @@ exports.updateBudget = async (req, res, next) => {
     if (!(await ownsTrip(req.params.tripId, req.user.id))) return res.status(404).json({ error: 'Trip not found' });
     const data = { ...req.body };
     ['totalBudget','accommodation','food','transport','activities','shopping','miscellaneous'].forEach(k => {
-      if (data[k] != null) data[k] = parseFloat(data[k]);
+      if (data[k] != null) data[k] = toMinorUnits(data[k]);
     });
     const budget = await prisma.budget.update({ where: { tripId: req.params.tripId }, data });
-    res.json(budget);
+    res.json(toDisplay(budget));
   } catch (err) { handleError(err, res, next); }
 };
 
