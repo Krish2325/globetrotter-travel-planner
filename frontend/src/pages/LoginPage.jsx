@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { motion } from 'framer-motion';
 import { Compass, Mail, Lock, Eye, EyeOff, Loader2, MapPin, Calendar, Globe, AlertTriangle, ArrowRight, Hand } from 'lucide-react';
 
-const GLASS = { background:'rgba(255,255,255,0.7)', backdropFilter:'blur(18px)', WebkitBackdropFilter:'blur(18px)', border:'1px solid rgba(124,154,126,0.2)', boxShadow:'0 8px 32px rgba(31,41,55,0.08)' };
+const GLASS = { background:'rgba(255,255,255,0.7)', backdropFilter:'blur(18px)', WebkitBackdropFilter:'blur(18px)', border:'1px solid rgba(99, 102, 241,0.2)', boxShadow:'0 8px 32px rgba(31,41,55,0.08)' };
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -22,13 +22,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex" style={{ background:'#F7F6F2' }}>
+    <div className="min-h-screen flex" style={{ background:'#F5F5FC' }}>
       {/* Left hero */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden flex-col items-center justify-center p-16"
-        style={{ background:'linear-gradient(135deg,#1E5E52 0%,#2E7D6B 50%,#3D9B85 100%)' }}>
+        style={{ background:'linear-gradient(135deg,#3730A3 0%,#4F46E5 50%,#6366F1 100%)' }}>
         <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80"
           alt="Travel" className="absolute inset-0 w-full h-full object-cover opacity-20" />
-        <div className="absolute inset-0" style={{ background:'linear-gradient(135deg,rgba(30,94,82,0.85),rgba(46,125,107,0.75))' }} />
+        <div className="absolute inset-0" style={{ background:'linear-gradient(135deg,rgba(55, 48, 163,0.85),rgba(79, 70, 229,0.75))' }} />
         {[...Array(4)].map((_,i) => (
           <motion.div key={i} className="absolute w-2 h-2 rounded-full bg-white/20"
             style={{ top:`${20+i*18}%`, right:`${8+i*6}%` }}
@@ -41,7 +41,7 @@ export default function LoginPage() {
             <Compass className="w-10 h-10 text-white" />
           </div>
           <h2 className="text-4xl font-bold font-display mb-3">Globetrotter</h2>
-          <p className="text-white/70 text-lg mb-10">Your smart travel planning companion</p>
+          <p className="text-white/70 text-lg mb-10">Empowering Personalized Travel Planning</p>
           <div className="grid grid-cols-3 gap-4">
             {[['10+','Destinations'],['50+','Activities'],['Free','Forever']].map(([v,l]) => (
               <div key={l} className="rounded-2xl p-4 border border-white/20 backdrop-blur-sm" style={{ background:'rgba(255,255,255,0.1)' }}>
@@ -59,10 +59,10 @@ export default function LoginPage() {
           initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.5, delay:0.1 }}>
           <div className="lg:hidden text-center mb-8">
             <div className="w-14 h-14 rounded-2xl mx-auto mb-3 flex items-center justify-center"
-              style={{ background:'linear-gradient(135deg,#1E5E52,#2E7D6B)' }}>
+              style={{ background:'linear-gradient(135deg,#3730A3,#4F46E5)' }}>
               <Compass className="w-7 h-7 text-white" />
             </div>
-            <h1 className="text-xl font-bold font-display" style={{ color:'#2E7D6B' }}>Globetrotter</h1>
+            <h1 className="text-xl font-bold font-display text-gradient">Globetrotter</h1>
           </div>
 
           <h1 className="text-3xl font-bold font-display mb-1 flex items-center gap-2" style={{ color:'#1F2937' }}>Welcome back <Hand className="w-8 h-8 text-amber-500" /></h1>
@@ -109,7 +109,7 @@ export default function LoginPage() {
             <div className="divider" />
             <p className="text-center text-sm" style={{ color:'#6B7280' }}>
               Don't have an account?{' '}
-              <Link to="/signup" className="font-semibold hover:underline inline-flex items-center gap-1" style={{ color:'#2E7D6B' }}>
+              <Link to="/signup" className="font-semibold hover:underline inline-flex items-center gap-1" style={{ color:'#4F46E5' }}>
                 Create one free <ArrowRight className="w-4 h-4" />
               </Link>
             </p>
@@ -117,7 +117,7 @@ export default function LoginPage() {
 
           <p className="text-center text-xs mt-4" style={{ color:'#9CA3AF' }}>
             Admin?{' '}
-            <Link to="/admin/login" className="font-semibold hover:underline inline-flex items-center gap-1" style={{ color:'#2E7D6B' }}>
+            <Link to="/admin/login" className="font-semibold hover:underline inline-flex items-center gap-1" style={{ color:'#4F46E5' }}>
               Go to Admin Console <ArrowRight className="w-3 h-3" />
             </Link>
           </p>

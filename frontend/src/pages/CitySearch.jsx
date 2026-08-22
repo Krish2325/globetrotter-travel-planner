@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import { useSearchParams } from "react-router-dom";
 import api from "../lib/api";
 import { Search, MapPin, Globe2, Loader2, TrendingUp } from "lucide-react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -12,7 +13,8 @@ L.Icon.Default.mergeOptions({
 });
 
 export default function CitySearch() {
-  const [q,        setQ]        = useState("");
+  const [searchParams] = useSearchParams();
+  const [q,        setQ]        = useState(searchParams.get("q") || "");
   const [cities,   setCities]   = useState([]);
   const [popular,  setPopular]  = useState([]);
   const [selected, setSelected] = useState(null);
@@ -40,6 +42,13 @@ export default function CitySearch() {
     return () => clearTimeout(t);
   }, [q]);
 
+  // Keep the map in sync with the current search: auto-select the top match
+  // as soon as results come in, unless the user already picked one of them.
+  useEffect(() => {
+    if (cities.length === 0) return;
+    setSelected(prev => (prev && cities.some(c => c.id === prev.id)) ? prev : cities[0]);
+  }, [cities]);
+
   const displayCities = q.length >= 2 ? cities : [];
 
   return (
@@ -65,7 +74,7 @@ export default function CitySearch() {
       {q.length < 2 && (
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <TrendingUp className="w-4 h-4 text-[#2E7D6B]"/>
+            <TrendingUp className="w-4 h-4 text-[#4F46E5]"/>
             <h2 className="section-title mb-0">Popular Destinations</h2>
           </div>
           {loadPop ? (
@@ -82,10 +91,10 @@ export default function CitySearch() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {popular.map(city => (
                 <button key={city.id} onClick={() => setSelected(city)}
-                  className={`relative rounded-2xl overflow-hidden h-36 group text-left transition-all duration-300 hover:shadow-xl hover:scale-[1.02] ${selected?.id===city.id?"ring-2 ring-[#2E7D6B]":""}`}>
+                  className={`relative rounded-2xl overflow-hidden h-36 group text-left transition-all duration-300 hover:shadow-xl hover:scale-[1.02] ${selected?.id===city.id?"ring-2 ring-[#4F46E5]":""}`}>
                   {city.imageUrl
                     ? <img src={city.imageUrl} alt={city.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
-                    : <div className="absolute inset-0 bg-gradient-to-br from-[#2E7D6B] to-[#3D9B85]"/>}
+                    : <div className="absolute inset-0 bg-gradient-to-br from-[#4F46E5] to-[#6366F1]"/>}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent"/>
                   <div className="absolute bottom-0 left-0 right-0 p-3">
                     <p className="text-white font-bold text-sm font-display">{city.name}</p>

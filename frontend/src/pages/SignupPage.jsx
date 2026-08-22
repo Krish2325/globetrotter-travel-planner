@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { motion } from 'framer-motion';
 import { Compass, Mail, Lock, User, Eye, EyeOff, Loader2, MapPin, Luggage, Calendar, Globe, ArrowRight } from 'lucide-react';
 
-const GLASS = { background:'rgba(255,255,255,0.7)', backdropFilter:'blur(18px)', WebkitBackdropFilter:'blur(18px)', border:'1px solid rgba(124,154,126,0.2)', boxShadow:'0 8px 32px rgba(31,41,55,0.08)' };
+const GLASS = { background:'rgba(255,255,255,0.7)', backdropFilter:'blur(18px)', WebkitBackdropFilter:'blur(18px)', border:'1px solid rgba(99, 102, 241,0.2)', boxShadow:'0 8px 32px rgba(31,41,55,0.08)' };
 const FEATURES = [
   { icon:MapPin,   text:'Build city-by-city itineraries' },
   { icon:Luggage,  text:'Smart packing checklists for every season' },
@@ -32,17 +32,17 @@ export default function SignupPage() {
   const update = (f) => (e) => setForm({ ...form, [f]:e.target.value });
 
   return (
-    <div className="min-h-screen flex" style={{ background:'#F7F6F2' }}>
+    <div className="min-h-screen flex" style={{ background:'#F5F5FC' }}>
       {/* Left form */}
       <div className="flex-1 flex items-center justify-center px-6 py-12">
         <motion.div className="w-full max-w-md"
           initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.5 }}>
           <div className="lg:hidden text-center mb-8">
             <div className="w-14 h-14 rounded-2xl mx-auto mb-3 flex items-center justify-center"
-              style={{ background:'linear-gradient(135deg,#1E5E52,#2E7D6B)' }}>
+              style={{ background:'linear-gradient(135deg,#3730A3,#4F46E5)' }}>
               <Compass className="w-7 h-7 text-white" />
             </div>
-            <h1 className="text-xl font-bold font-display" style={{ color:'#2E7D6B' }}>Globetrotter</h1>
+            <h1 className="text-xl font-bold font-display text-gradient">Globetrotter</h1>
           </div>
 
           <h1 className="text-3xl font-bold font-display mb-1 flex items-center gap-2" style={{ color:'#1F2937' }}>Start exploring <Globe className="w-8 h-8 text-teal-600" /></h1>
@@ -104,7 +104,7 @@ export default function SignupPage() {
             <div className="divider" />
             <p className="text-center text-sm" style={{ color:'#6B7280' }}>
               Already have an account?{' '}
-              <Link to="/login" className="font-semibold hover:underline inline-flex items-center gap-1" style={{ color:'#2E7D6B' }}>
+              <Link to="/login" className="font-semibold hover:underline inline-flex items-center gap-1" style={{ color:'#4F46E5' }}>
                 Sign in <ArrowRight className="w-4 h-4" />
               </Link>
             </p>
@@ -114,10 +114,10 @@ export default function SignupPage() {
 
       {/* Right hero */}
       <div className="hidden lg:flex lg:w-5/12 relative overflow-hidden flex-col items-center justify-center p-16"
-        style={{ background:'linear-gradient(135deg,#1E5E52 0%,#2E7D6B 60%,#3D9B85 100%)' }}>
+        style={{ background:'linear-gradient(135deg,#3730A3 0%,#4F46E5 60%,#6366F1 100%)' }}>
         <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80"
           alt="Mountains" className="absolute inset-0 w-full h-full object-cover opacity-20" />
-        <div className="absolute inset-0" style={{ background:'linear-gradient(135deg,rgba(30,94,82,0.85),rgba(61,155,133,0.75))' }} />
+        <div className="absolute inset-0" style={{ background:'linear-gradient(135deg,rgba(55, 48, 163,0.85),rgba(99, 102, 241,0.75))' }} />
         <motion.div className="relative text-center text-white"
           initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.6 }}>
           <div className="w-20 h-20 rounded-3xl bg-white/15 flex items-center justify-center mx-auto mb-6 border border-white/25 backdrop-blur-sm">
