@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,16 +6,16 @@
 
 /* ── Design Tokens ───────────────────────────────────────────────────────── */
 :root {
-  --bg-primary: #F7F6F2;
-  --bg-secondary: #EFEDE7;
-  --sage: #2E7D6B;
-  --sage-light: #A7C4A0;
-  --sage-dark: #1E5E52;
-  --sage-soft: #3D9B85;
+  --bg-primary: #F5F5FC;
+  --bg-secondary: #ECECF7;
+  --sage: #4F46E5;
+  --sage-light: #A5B4FC;
+  --sage-dark: #3730A3;
+  --sage-soft: #6366F1;
   --text-primary: #1F2937;
   --text-secondary: #6B7280;
   --text-muted: #9CA3AF;
-  --border: rgba(124, 154, 126, 0.18);
+  --border: rgba(99, 102, 241, 0.18);
   --glass-bg: rgba(255, 255, 255, 0.55);
   --glass-border: rgba(255, 255, 255, 0.25);
   --shadow: 0 8px 32px rgba(31, 41, 55, 0.08);
@@ -50,7 +50,7 @@ body,
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(124, 154, 126, 0.3);
+  background: rgba(99, 102, 241, 0.3);
   border-radius: 10px;
 }
 
@@ -77,18 +77,35 @@ body,
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(124, 154, 126, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.2);
   box-shadow: 0 4px 16px rgba(31, 41, 55, 0.06);
   border-radius: 16px;
 }
 
 /* ── Typography ──────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Sora', sans-serif;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+/* Use on wordmarks/hero headlines sitting on light backgrounds only — never on
+   top of an already-colored gradient panel, where it would kill contrast. */
+.text-gradient {
+  background: linear-gradient(135deg, #4F46E5 0%, #6366F1 55%, #4338CA 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
 .page-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-size: 1.75rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text-primary);
   line-height: 1.2;
+  letter-spacing: -0.03em;
 }
 
 .page-subtitle {
@@ -98,10 +115,11 @@ body,
 }
 
 .section-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-size: 1rem;
   font-weight: 700;
   color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
 .label-xs {
@@ -128,14 +146,14 @@ body,
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #2E7D6B, #3D9B85);
+  background: linear-gradient(135deg, #4F46E5, #6366F1);
   color: #fff;
-  box-shadow: 0 4px 16px rgba(46, 125, 107, 0.25);
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.25);
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(46, 125, 107, 0.35);
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.35);
 }
 
 .btn-primary:disabled {
@@ -147,13 +165,13 @@ body,
 .btn-secondary {
   background: rgba(255, 255, 255, 0.7);
   color: var(--sage);
-  border: 1px solid rgba(124, 154, 126, 0.25);
+  border: 1px solid rgba(99, 102, 241, 0.25);
   backdrop-filter: blur(8px);
 }
 
 .btn-secondary:hover {
-  background: rgba(46, 125, 107, 0.08);
-  border-color: rgba(46, 125, 107, 0.4);
+  background: rgba(79, 70, 229, 0.08);
+  border-color: rgba(79, 70, 229, 0.4);
 }
 
 .btn-ghost {
@@ -163,7 +181,7 @@ body,
 }
 
 .btn-ghost:hover {
-  background: rgba(124, 154, 126, 0.07);
+  background: rgba(99, 102, 241, 0.07);
   color: var(--sage);
 }
 
@@ -192,9 +210,9 @@ body,
 }
 
 .btn-icon:hover {
-  background: rgba(46, 125, 107, 0.1);
+  background: rgba(79, 70, 229, 0.1);
   color: var(--sage);
-  border-color: rgba(46, 125, 107, 0.3);
+  border-color: rgba(79, 70, 229, 0.3);
 }
 
 /* ── Inputs ──────────────────────────────────────────────────────────────── */
@@ -202,7 +220,7 @@ body,
   width: 100%;
   padding: 0.7rem 1rem;
   border-radius: 14px;
-  border: 1px solid rgba(124, 154, 126, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.2);
   background: rgba(255, 255, 255, 0.75);
   color: var(--text-primary);
   font-size: 0.875rem;
@@ -213,7 +231,7 @@ body,
 
 .input:focus {
   border-color: var(--sage);
-  box-shadow: 0 0 0 3px rgba(46, 125, 107, 0.12);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
 }
 
 .input::placeholder {
@@ -250,13 +268,13 @@ select.input {
 }
 
 .nav-link:hover {
-  background: rgba(124, 154, 126, 0.08);
+  background: rgba(99, 102, 241, 0.08);
   color: var(--sage);
 }
 
 .nav-link.active {
-  background: rgba(46, 125, 107, 0.1);
-  border-color: rgba(46, 125, 107, 0.2);
+  background: rgba(79, 70, 229, 0.1);
+  border-color: rgba(79, 70, 229, 0.2);
   color: var(--sage);
   font-weight: 600;
 }
@@ -274,9 +292,9 @@ select.input {
 }
 
 .badge-sage {
-  background: rgba(46, 125, 107, 0.12);
-  color: #2E7D6B;
-  border: 1px solid rgba(46, 125, 107, 0.2);
+  background: rgba(79, 70, 229, 0.12);
+  color: #4F46E5;
+  border: 1px solid rgba(79, 70, 229, 0.2);
 }
 
 .badge-teal {
@@ -298,9 +316,9 @@ select.input {
 }
 
 .badge-cream {
-  background: rgba(124, 154, 126, 0.1);
-  color: #4B7055;
-  border: 1px solid rgba(124, 154, 126, 0.2);
+  background: rgba(99, 102, 241, 0.1);
+  color: #4338CA;
+  border: 1px solid rgba(99, 102, 241, 0.2);
 }
 
 .badge-blue {
@@ -311,7 +329,7 @@ select.input {
 
 /* ── Skeleton ────────────────────────────────────────────────────────────── */
 .skeleton {
-  background: linear-gradient(90deg, #EFEDE7 25%, #F7F6F2 50%, #EFEDE7 75%);
+  background: linear-gradient(90deg, #ECECF7 25%, #F5F5FC 50%, #ECECF7 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: 16px;
@@ -329,7 +347,7 @@ select.input {
 
 /* ── Spinner ─────────────────────────────────────────────────────────────── */
 .spinner {
-  border: 3px solid rgba(46, 125, 107, 0.15);
+  border: 3px solid rgba(79, 70, 229, 0.15);
   border-top-color: var(--sage);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
@@ -343,7 +361,7 @@ select.input {
 
 /* ── Trip card meshes ────────────────────────────────────────────────────── */
 .mesh-1 {
-  background: linear-gradient(135deg, #2E7D6B, #5EEAD4);
+  background: linear-gradient(135deg, #4F46E5, #5EEAD4);
 }
 
 .mesh-2 {
@@ -381,18 +399,18 @@ select.input {
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--text-secondary);
-  border-bottom: 1px solid rgba(124, 154, 126, 0.15);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.15);
 }
 
 .admin-table td {
   padding: 0.85rem 1rem;
-  border-bottom: 1px solid rgba(124, 154, 126, 0.07);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.07);
   color: var(--text-primary);
   vertical-align: middle;
 }
 
 .admin-table tr:hover td {
-  background: rgba(124, 154, 126, 0.04);
+  background: rgba(99, 102, 241, 0.04);
 }
 
 .admin-table tr:last-child td {
@@ -402,7 +420,7 @@ select.input {
 /* ── Divider ─────────────────────────────────────────────────────────────── */
 .divider {
   height: 1px;
-  background: rgba(124, 154, 126, 0.15);
+  background: rgba(99, 102, 241, 0.15);
   margin: 1.25rem 0;
 }
 
