@@ -206,7 +206,7 @@ All routes are mounted under `/api` (see [`backend/src/app.js`](./backend/src/ap
 | [Krish2325](https://github.com/Krish2325) | Project owner & maintainer |
 | [DharmTrivedi](https://github.com/DharmTrivedi) | Backend & database management |
 | [Jeelpatel-48](https://github.com/Jeelpatel-48) | Full-stack (frontend, backend, admin) |
-| [Areen82](https://github.com/Areen82) | Backend |
+| [Areen82](https://github.com/Areen82) | Backend and Security |
 
 ---
 
