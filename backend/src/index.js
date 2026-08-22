@@ -1,4 +1,10 @@
 require('dotenv').config();
+
+if (!process.env.JWT_SECRET) {
+  console.error('❌ JWT_SECRET is not set. Refusing to start — tokens would be signed with an empty secret.');
+  process.exit(1);
+}
+
 const app = require('./app');
 const { PrismaClient } = require('@prisma/client');
 

@@ -7,6 +7,8 @@ const prisma = require('../lib/prisma');
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const isValidEmail = (e) => EMAIL_RE.test(String(e).toLowerCase());
 
+const EMAIL_TOKEN_TTL_MS = 24 * 60 * 60 * 1000; // matches the "expires in 24 hours" copy in the verification email
+
 const signToken = (userId) =>
   jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN || '7d',
@@ -33,7 +35,10 @@ exports.signup = async (req, res) => {
     const emailToken = uuidv4();
 
     const user = await prisma.user.create({
-      data: { name, email: email.toLowerCase(), passwordHash, emailToken },
+      data: {
+        name, email: email.toLowerCase(), passwordHash, emailToken,
+        emailTokenExpiresAt: new Date(Date.now() + EMAIL_TOKEN_TTL_MS),
+      },
     });
 
     try {
@@ -56,9 +61,12 @@ exports.signup = async (req, res) => {
 };
 
 // ── POST /api/auth/admin-signup ───────────────────────────────────────────────
+// Open only for bootstrapping the very first admin. Once an admin exists,
+// this requires ADMIN_SIGNUP_SECRET (set in the environment) to be sent as
+// the `secret` field — otherwise anyone could self-promote to ADMIN.
 exports.adminSignup = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, secret } = req.body;
 
     if (!name || !email || !password)
       return res.status(400).json({ error: 'name, email, and password are required' });
@@ -69,6 +77,13 @@ exports.adminSignup = async (req, res) => {
     if (password.length < 8)
       return res.status(400).json({ error: 'Password must be at least 8 characters' });
 
+    const adminCount = await prisma.user.count({ where: { role: 'ADMIN' } });
+    if (adminCount > 0) {
+      if (!process.env.ADMIN_SIGNUP_SECRET || secret !== process.env.ADMIN_SIGNUP_SECRET) {
+        return res.status(403).json({ error: 'Admin signup is closed. Ask an existing admin to add you.' });
+      }
+    }
+
     const exists = await prisma.user.findUnique({ where: { email: email.toLowerCase() } });
     if (exists) return res.status(409).json({ error: 'Email already registered' });
 
@@ -76,7 +91,10 @@ exports.adminSignup = async (req, res) => {
     const emailToken = uuidv4();
 
     const user = await prisma.user.create({
-      data: { name, email: email.toLowerCase(), passwordHash, emailToken, role: 'ADMIN' },
+      data: {
+        name, email: email.toLowerCase(), passwordHash, emailToken, role: 'ADMIN',
+        emailTokenExpiresAt: new Date(Date.now() + EMAIL_TOKEN_TTL_MS),
+      },
     });
 
     const token = signToken(user.id);
@@ -135,9 +153,14 @@ exports.verifyEmail = async (req, res) => {
     const user = await prisma.user.findUnique({ where: { emailToken: token } });
     if (!user) return res.status(400).json({ error: 'Invalid or expired token' });
 
+    if (user.emailTokenExpiresAt && user.emailTokenExpiresAt < new Date()) {
+      await prisma.user.update({ where: { id: user.id }, data: { emailToken: null, emailTokenExpiresAt: null } });
+      return res.status(400).json({ error: 'Invalid or expired token' });
+    }
+
     await prisma.user.update({
       where: { id: user.id },
-      data: { isEmailVerified: true, emailToken: null },
+      data: { isEmailVerified: true, emailToken: null, emailTokenExpiresAt: null },
     });
     res.json({ message: 'Email verified successfully' });
   } catch (err) {

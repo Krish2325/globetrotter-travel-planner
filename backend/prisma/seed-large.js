@@ -4,6 +4,7 @@
  */
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcryptjs');
+const { toMinorUnits } = require('../src/lib/money');
 const prisma = new PrismaClient();
 
 const CITY_DATA = [
@@ -126,7 +127,7 @@ async function main() {
         destination: dest,
         durationDays: randomInt(3, 14),
         packageType: type,
-        basePrice: randomInt(20000, 300000),
+        basePrice: toMinorUnits(randomInt(20000, 300000)),
         bestSeason: randomChoice(SEASONS),
         coverImage: `https://picsum.photos/seed/${encodeURIComponent(title)}/800/600`,
         rating: parseFloat((Math.random() * 2 + 3).toFixed(1)), // 3.0 to 5.0

@@ -19,6 +19,7 @@ model User {
   avatarUrl       String?
   isEmailVerified Boolean  @default(false)
   emailToken      String?  @unique
+  emailTokenExpiresAt DateTime?
   role            String   @default("USER")    // USER | ADMIN
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
@@ -42,7 +43,7 @@ model Trip {
   destination      String?
   durationDays     Int?
   packageType      String?  // LUXURY|BUDGET|ADVENTURE|FAMILY|HONEYMOON|CULTURAL
-  basePrice        Float?
+  basePrice        Int?     // minor units (e.g. paise) — SQLite has no exact Decimal type
   bestSeason       String?
   coverImage       String?
   images           String?  // comma-separated URLs or JSON
@@ -67,6 +68,7 @@ model Trip {
   communityShares CommunityShare[]
   tripCopies      TripCopy[]
 
+  @@index([userId])
   @@map("trips")
 }
 
@@ -105,6 +107,8 @@ model Stop {
   city           City           @relation(fields: [cityId], references: [id])
   stopActivities StopActivity[]
 
+  @@index([tripId])
+  @@index([cityId])
   @@map("stops")
 }
 
@@ -127,6 +131,7 @@ model Activity {
   city           City           @relation(fields: [cityId], references: [id])
   stopActivities StopActivity[]
 
+  @@index([cityId])
   @@map("activities")
 }
 
@@ -151,14 +156,14 @@ model StopActivity {
 model Budget {
   id            String   @id @default(uuid())
   tripId        String   @unique
-  totalBudget   Float
+  totalBudget   Int      // minor units (e.g. paise)
   currency      String   @default("INR")
-  accommodation Float?
-  food          Float?
-  transport     Float?
-  activities    Float?
-  shopping      Float?
-  miscellaneous Float?
+  accommodation Int?
+  food          Int?
+  transport     Int?
+  activities    Int?
+  shopping      Int?
+  miscellaneous Int?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
@@ -172,7 +177,7 @@ model Expense {
   id         String   @id @default(uuid())
   tripId     String
   title      String
-  amount     Float
+  amount     Int      // minor units (e.g. paise)
   currency   String   @default("INR")
   category   String   // ACCOMMODATION|FOOD|TRANSPORT|ACTIVITIES|SHOPPING|MISCELLANEOUS
   date       DateTime
@@ -182,6 +187,7 @@ model Expense {
 
   trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
 
+  @@index([tripId])
   @@map("expenses")
 }
 
@@ -198,6 +204,8 @@ model Checklist {
   user  User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   items ChecklistItem[]
 
+  @@index([tripId])
+  @@index([userId])
   @@map("checklists")
 }
 
@@ -227,6 +235,8 @@ model Note {
   trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([tripId])
+  @@index([userId])
   @@map("notes")
 }
 
@@ -247,6 +257,8 @@ model CommunityShare {
   trip Trip @relation(fields: [tripId], references: [id], onDelete: Cascade)
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([tripId])
+  @@index([userId])
   @@map("community_shares")
 }
 
@@ -261,5 +273,6 @@ model TripCopy {
   originalTrip Trip @relation(fields: [originalTripId], references: [id], onDelete: Cascade)
   copiedBy     User @relation(fields: [copiedByUserId], references: [id], onDelete: Cascade)
 
+  @@index([originalTripId])
   @@map("trip_copies")
 }

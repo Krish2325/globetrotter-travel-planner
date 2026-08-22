@@ -5,6 +5,7 @@
  * packages: 25 Gujarat, 10 other-India, 15 international.
  */
 const { PrismaClient } = require('@prisma/client');
+const { toMinorUnits } = require('../src/lib/money');
 const prisma = new PrismaClient();
 
 const img = (seed) => `https://picsum.photos/seed/${encodeURIComponent(seed)}/800/600`;
@@ -102,7 +103,7 @@ async function main() {
         destination: t.destination,
         durationDays: t.durationDays,
         packageType: t.packageType,
-        basePrice: t.basePrice,
+        basePrice: toMinorUnits(t.basePrice),
         bestSeason: t.bestSeason,
         coverImage: img(t.title),
         rating: parseFloat((Math.random() * 1.2 + 3.8).toFixed(1)),

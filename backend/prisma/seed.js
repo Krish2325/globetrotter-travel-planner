@@ -1,6 +1,7 @@
 // prisma/seed.js — Full rich seed for Globetrotter
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcryptjs');
+const { toMinorUnits } = require('../src/lib/money');
 const prisma = new PrismaClient();
 
 async function main() {
@@ -184,7 +185,7 @@ async function main() {
 
   const trips = [];
   for (const t of tripData) {
-    const trip = await prisma.trip.create({ data: t });
+    const trip = await prisma.trip.create({ data: { ...t, basePrice: toMinorUnits(t.basePrice) } });
     trips.push(trip);
   }
   console.log(`✅ ${trips.length} trips created`);

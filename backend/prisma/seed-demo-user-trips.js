@@ -7,6 +7,7 @@
  * packages or the City/Activity catalog.
  */
 const { PrismaClient } = require('@prisma/client');
+const { toMinorUnits } = require('../src/lib/money');
 const prisma = new PrismaClient();
 
 const TRIPS = [
@@ -108,13 +109,25 @@ async function main() {
     }
 
     if (t.budget) {
-      await prisma.budget.create({ data: { tripId: trip.id, ...t.budget } });
+      const b = t.budget;
+      await prisma.budget.create({
+        data: {
+          tripId: trip.id,
+          totalBudget: toMinorUnits(b.totalBudget),
+          accommodation: toMinorUnits(b.accommodation),
+          food: toMinorUnits(b.food),
+          transport: toMinorUnits(b.transport),
+          activities: toMinorUnits(b.activities),
+          shopping: toMinorUnits(b.shopping),
+          miscellaneous: toMinorUnits(b.miscellaneous),
+        },
+      });
     }
 
     for (const e of t.expenses) {
       await prisma.expense.create({
         data: {
-          tripId: trip.id, title: e.title, amount: e.amount, category: e.category,
+          tripId: trip.id, title: e.title, amount: toMinorUnits(e.amount), category: e.category,
           date: new Date(t.startDate.getTime() + e.daysIn * 86400000),
         },
       });
