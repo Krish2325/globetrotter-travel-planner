@@ -223,7 +223,7 @@ input, textarea, select { outline: none; }
 @keyframes spin { to { transform:rotate(360deg); } }
 
 /* ─── Trip cover meshes ──────────────────────────────────────────────────────── */
-.trip-card-mesh-1 { background:linear-gradient(135deg,#F2683A,#5EEAD4); }
+.trip-card-mesh-1 { background:linear-gradient(135deg,#F2683A,#FFA76B); }
 .trip-card-mesh-2 { background:linear-gradient(135deg,#3D6B38,#FFC9A3); }
 .trip-card-mesh-3 { background:linear-gradient(135deg,#0369A1,#38BDF8); }
 .trip-card-mesh-4 { background:linear-gradient(135deg,#7C3AED,#C084FC); }
