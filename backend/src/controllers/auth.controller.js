@@ -56,9 +56,12 @@ exports.signup = async (req, res) => {
 };
 
 // ── POST /api/auth/admin-signup ───────────────────────────────────────────────
+// Open only for bootstrapping the very first admin. Once an admin exists,
+// this requires ADMIN_SIGNUP_SECRET (set in the environment) to be sent as
+// the `secret` field — otherwise anyone could self-promote to ADMIN.
 exports.adminSignup = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, secret } = req.body;
 
     if (!name || !email || !password)
       return res.status(400).json({ error: 'name, email, and password are required' });
@@ -68,6 +71,13 @@ exports.adminSignup = async (req, res) => {
       return res.status(400).json({ error: 'Please enter a valid email address' });
     if (password.length < 8)
       return res.status(400).json({ error: 'Password must be at least 8 characters' });
+
+    const adminCount = await prisma.user.count({ where: { role: 'ADMIN' } });
+    if (adminCount > 0) {
+      if (!process.env.ADMIN_SIGNUP_SECRET || secret !== process.env.ADMIN_SIGNUP_SECRET) {
+        return res.status(403).json({ error: 'Admin signup is closed. Ask an existing admin to add you.' });
+      }
+    }
 
     const exists = await prisma.user.findUnique({ where: { email: email.toLowerCase() } });
     if (exists) return res.status(409).json({ error: 'Email already registered' });
