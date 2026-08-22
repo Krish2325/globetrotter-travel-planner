@@ -8,12 +8,14 @@ import Layout from './components/Layout';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import Dashboard from './pages/Dashboard';
+import Packages from './pages/Packages';
 import MyTrips from './pages/MyTrips';
 import CreateTrip from './pages/CreateTrip';
 import TripDetail from './pages/TripDetail';
 import ItineraryBuilder from './pages/ItineraryBuilder';
 import BudgetPage from './pages/BudgetPage';
 import ChecklistPage from './pages/ChecklistPage';
+import Checklists from './pages/Checklists';
 import NotesPage from './pages/NotesPage';
 import CitySearch from './pages/CitySearch';
 import ActivitySearch from './pages/ActivitySearch';
@@ -41,7 +43,7 @@ import AdminSettings from './admin/pages/AdminSettings';
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
   if (loading) return (
-    <div className="flex items-center justify-center min-h-screen" style={{ background:'#F7F6F2' }}>
+    <div className="flex items-center justify-center min-h-screen" style={{ background:'#F5F5FC' }}>
       <div className="flex flex-col items-center gap-4">
         <div className="spinner w-10 h-10 border-[3px]" />
         <p className="text-sm font-medium" style={{ color:'#6B7280' }}>Loading Globetrotter…</p>
@@ -62,7 +64,7 @@ function PublicRoute({ children }) {
 function AdminProtectedRoute({ children }) {
   const { admin, loading } = useAdminAuth();
   if (loading) return (
-    <div className="flex items-center justify-center min-h-screen" style={{ background:'#F7F6F2' }}>
+    <div className="flex items-center justify-center min-h-screen" style={{ background:'#F5F5FC' }}>
       <div className="spinner w-10 h-10 border-[3px]" />
     </div>
   );
@@ -93,12 +95,14 @@ export default function App() {
             {/* ── User protected ──────────────────────────────────────── */}
             <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
               <Route path="/dashboard"                element={<Dashboard />} />
+              <Route path="/packages"                 element={<Packages />} />
               <Route path="/trips"                    element={<MyTrips />} />
               <Route path="/trips/new"                element={<CreateTrip />} />
               <Route path="/trips/:id"                element={<TripDetail />} />
               <Route path="/trips/:id/itinerary"      element={<ItineraryBuilder />} />
               <Route path="/trips/:id/budget"         element={<BudgetPage />} />
               <Route path="/trips/:id/checklist"      element={<ChecklistPage />} />
+              <Route path="/checklists"               element={<Checklists />} />
               <Route path="/trips/:id/notes"          element={<NotesPage />} />
               <Route path="/cities"                   element={<CitySearch />} />
               <Route path="/activities"               element={<ActivitySearch />} />

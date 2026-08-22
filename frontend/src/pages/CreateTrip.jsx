@@ -7,15 +7,16 @@ export default function CreateTrip() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [form, setForm] = useState({
-    title: searchParams.get('title') || '', description: '', startDate: '', endDate: '', isPublic: false,
+    title: searchParams.get('title') || '', description: searchParams.get('description') || '', startDate: '', endDate: '', isPublic: false,
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // Update title if query param changes
+  // Update title/description if query params change
   useEffect(() => {
     const t = searchParams.get('title');
-    if (t) setForm(f => ({ ...f, title: t }));
+    const d = searchParams.get('description');
+    if (t || d) setForm(f => ({ ...f, ...(t && { title: t }), ...(d && { description: d }) }));
   }, [searchParams]);
 
   const update = (field) => (e) => setForm({ ...form, [field]: e.type === 'checkbox' ? e.target.checked : e.target.value });
