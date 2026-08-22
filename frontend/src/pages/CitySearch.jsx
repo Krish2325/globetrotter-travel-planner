@@ -65,7 +65,7 @@ export default function CitySearch() {
       {q.length < 2 && (
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <TrendingUp className="w-4 h-4 text-[#2E7D6B]"/>
+            <TrendingUp className="w-4 h-4 text-[#F2683A]"/>
             <h2 className="section-title mb-0">Popular Destinations</h2>
           </div>
           {loadPop ? (
@@ -82,10 +82,10 @@ export default function CitySearch() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {popular.map(city => (
                 <button key={city.id} onClick={() => setSelected(city)}
-                  className={`relative rounded-2xl overflow-hidden h-36 group text-left transition-all duration-300 hover:shadow-xl hover:scale-[1.02] ${selected?.id===city.id?"ring-2 ring-[#2E7D6B]":""}`}>
+                  className={`relative rounded-2xl overflow-hidden h-36 group text-left transition-all duration-300 hover:shadow-xl hover:scale-[1.02] ${selected?.id===city.id?"ring-2 ring-[#F2683A]":""}`}>
                   {city.imageUrl
                     ? <img src={city.imageUrl} alt={city.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
-                    : <div className="absolute inset-0 bg-gradient-to-br from-[#2E7D6B] to-[#3D9B85]"/>}
+                    : <div className="absolute inset-0 bg-gradient-to-br from-[#F2683A] to-[#FB8A4C]"/>}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent"/>
                   <div className="absolute bottom-0 left-0 right-0 p-3">
                     <p className="text-white font-bold text-sm font-display">{city.name}</p>

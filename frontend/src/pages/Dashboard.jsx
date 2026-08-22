@@ -25,7 +25,7 @@ const RECOMMENDED = [
 const EXPLORE_ACTIONS = [
   { to: '/cities', icon: Globe, label: 'Search Cities', color: '#0369A1', bg: 'rgba(219,234,254,0.6)', border: 'rgba(147,197,253,0.4)' },
   { to: '/activities', icon: TrendingUp, label: 'Find Activities', color: '#059669', bg: 'rgba(209,250,229,0.6)', border: 'rgba(110,231,183,0.4)' },
-  { to: '/community', icon: Users, label: 'Community', color: '#2E7D6B', bg: 'rgba(167,196,160,0.25)', border: 'rgba(124,154,126,0.35)' },
+  { to: '/community', icon: Users, label: 'Community', color: '#F2683A', bg: 'rgba(167,196,160,0.25)', border: 'rgba(214,122,74,0.35)' },
   { to: '/trips/new', icon: PlusCircle, label: 'Plan a Trip', color: '#D97706', bg: 'rgba(254,243,199,0.6)', border: 'rgba(253,230,138,0.4)' },
 ];
 
@@ -66,7 +66,7 @@ export default function Dashboard() {
 
   /* ── Stats ────────────────────────────────────────────────────────────────── */
   const stats = [
-    { label: 'Total Trips', value: trips.length, icon: Map, grad: 'from-[#2E7D6B] to-[#5EEAD4]', light: 'rgba(46,125,107,0.1)' },
+    { label: 'Total Trips', value: trips.length, icon: Map, grad: 'from-[#F2683A] to-[#FFA76B]', light: 'rgba(242,104,58,0.1)' },
     { label: 'Upcoming', value: upcoming.length, icon: Clock, grad: 'from-[#0369A1] to-[#38BDF8]', light: 'rgba(3,105,161,0.1)' },
     { label: 'Completed', value: completed.length, icon: Star, grad: 'from-[#D97706] to-[#FCD34D]', light: 'rgba(217,119,6,0.1)' },
   ];
@@ -83,7 +83,7 @@ export default function Dashboard() {
             alt="Travel scenic"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg,rgba(30,94,82,0.78) 0%,rgba(46,125,107,0.55) 50%,rgba(0,0,0,0.15) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg,rgba(30,94,82,0.78) 0%,rgba(242,104,58,0.55) 50%,rgba(0,0,0,0.15) 100%)' }} />
         </div>
 
         {/* Floating dots */}
@@ -163,20 +163,20 @@ export default function Dashboard() {
           />
         </div>
         <div className="flex gap-2 shrink-0">
-          <button className="btn-ghost flex items-center gap-2 border border-[rgba(124,154,126,0.2)] rounded-2xl px-4 py-2.5 text-sm"
+          <button className="btn-ghost flex items-center gap-2 border border-[rgba(214,122,74,0.2)] rounded-2xl px-4 py-2.5 text-sm"
             style={{ background: 'rgba(255,255,255,0.65)', backdropFilter: 'blur(8px)' }}>
             <SlidersHorizontal className="w-4 h-4" /> Filter
           </button>
           <button
             onClick={() => setViewMode('grid')}
             className="btn-icon" title="Grid"
-            style={viewMode === 'grid' ? { background: 'rgba(46,125,107,0.15)', borderColor: 'rgba(46,125,107,0.35)', color: '#2E7D6B' } : {}}>
+            style={viewMode === 'grid' ? { background: 'rgba(242,104,58,0.15)', borderColor: 'rgba(242,104,58,0.35)', color: '#F2683A' } : {}}>
             <Grid3X3 className="w-4 h-4" />
           </button>
           <button
             onClick={() => setViewMode('list')}
             className="btn-icon" title="List"
-            style={viewMode === 'list' ? { background: 'rgba(46,125,107,0.15)', borderColor: 'rgba(46,125,107,0.35)', color: '#2E7D6B' } : {}}>
+            style={viewMode === 'list' ? { background: 'rgba(242,104,58,0.15)', borderColor: 'rgba(242,104,58,0.35)', color: '#F2683A' } : {}}>
             <List className="w-4 h-4" />
           </button>
         </div>
@@ -232,7 +232,7 @@ export default function Dashboard() {
                 </div>
                 {/* Info */}
                 <div className="p-4">
-                  <h3 className="font-bold text-[#1F2937] text-sm group-hover:text-[#2E7D6B] transition-colors">{dest.name}</h3>
+                  <h3 className="font-bold text-[#1F2937] text-sm group-hover:text-[#F2683A] transition-colors">{dest.name}</h3>
                   <div className="flex items-center gap-1 mt-1">
                     <MapPin className="w-3 h-3 text-[#9CA3AF]" />
                     <span className="text-xs text-[#6B7280]">{dest.country}</span>
@@ -240,11 +240,11 @@ export default function Dashboard() {
                   <div className="flex items-center justify-between mt-3">
                     <div>
                       <p className="text-xs text-[#9CA3AF]">Est. Budget</p>
-                      <p className="text-sm font-bold text-[#2E7D6B]">{dest.budget}</p>
+                      <p className="text-sm font-bold text-[#F2683A]">{dest.budget}</p>
                     </div>
                     <span className="text-xs font-medium text-[#6B7280] bg-[#EFEDE7] px-2 py-1 rounded-lg">{dest.duration}</span>
                   </div>
-                  <div className="mt-3 flex items-center gap-1 text-xs text-[#2E7D6B] font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="mt-3 flex items-center gap-1 text-xs text-[#F2683A] font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
                     Plan this trip <ArrowRight className="w-3 h-3" />
                   </div>
                 </div>
@@ -261,7 +261,7 @@ export default function Dashboard() {
             <h2 className="section-title mb-0">Your Trips</h2>
             <p className="text-xs text-[#9CA3AF] mt-0.5">{filteredTrips.length} trip{filteredTrips.length !== 1 ? 's' : ''} found</p>
           </div>
-          <Link to="/trips" className="btn-ghost text-sm text-[#2E7D6B]">
+          <Link to="/trips" className="btn-ghost text-sm text-[#F2683A]">
             View all <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -286,10 +286,10 @@ export default function Dashboard() {
             {filteredTrips.map((trip, idx) => (
               <motion.div key={trip.id} variants={fadeUp} whileHover={{ x: 4, transition: { duration: 0.2 } }}>
                 <Link to={`/trips/${trip.id}`}
-                  className="card flex items-center gap-4 p-4 group transition-all duration-300 hover:border-[rgba(46,125,107,0.35)] hover:shadow-lg block">
+                  className="card flex items-center gap-4 p-4 group transition-all duration-300 hover:border-[rgba(242,104,58,0.35)] hover:shadow-lg block">
                   <div className={`w-12 h-12 rounded-2xl ${MESHES[idx % MESHES.length]} shrink-0`} />
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-[#1F2937] text-sm group-hover:text-[#2E7D6B] transition-colors truncate">{trip.title}</h3>
+                    <h3 className="font-semibold text-[#1F2937] text-sm group-hover:text-[#F2683A] transition-colors truncate">{trip.title}</h3>
                     <div className="flex items-center gap-2 mt-0.5">
                       <Clock className="w-3 h-3 text-[#9CA3AF]" />
                       <p className="text-xs text-[#6B7280]">
@@ -326,7 +326,7 @@ export default function Dashboard() {
                     </div>
                   </div>
                   <div className="p-4">
-                    <h3 className="font-bold text-[#1F2937] text-sm group-hover:text-[#2E7D6B] transition-colors">{trip.title}</h3>
+                    <h3 className="font-bold text-[#1F2937] text-sm group-hover:text-[#F2683A] transition-colors">{trip.title}</h3>
                     {trip.stops?.length > 0 && (
                       <p className="text-xs text-[#9CA3AF] mt-1.5 flex items-center gap-1">
                         <MapPin className="w-3 h-3" />
