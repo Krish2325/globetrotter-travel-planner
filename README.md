@@ -1,51 +1,64 @@
-# Globetrotter 🌍
+# 🌍 Globetrotter
 
-> A modern, full-stack travel planning platform and centralized admin console built with React, Node.js, Express, and Prisma.
+**A modern, full-stack travel planning platform with a centralized admin console.**
+Plan itineraries, track budgets, manage packing lists, and share adventures — all in one place.
 
-![Globetrotter](https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&q=80)
+<p>
+  <img alt="Node.js" src="https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white">
+  <img alt="React" src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black">
+  <img alt="Express" src="https://img.shields.io/badge/Express-4-000000?logo=express&logoColor=white">
+  <img alt="Prisma" src="https://img.shields.io/badge/Prisma-ORM-2D3748?logo=prisma&logoColor=white">
+  <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-v3-06B6D4?logo=tailwindcss&logoColor=white">
+  <img alt="Status" src="https://img.shields.io/badge/status-active-brightgreen">
+</p>
 
-## 📸 Screenshots
-
-### 👤 User Platform
-
-| Login | Dashboard |
-|-------|-----------|
-| ![Login](./screenshots/01_login.png) | ![Dashboard](./screenshots/02_dashboard.png) |
-
-| My Trips | Profile |
-|----------|---------|
-| ![My Trips](./screenshots/03_my_trips.png) | ![Profile](./screenshots/04_profile.png) |
+![Globetrotter banner](https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&q=80)
 
 ---
 
-### 🛡️ Admin Console
+## 📖 Table of Contents
 
-| Admin Login | Admin Dashboard |
-|-------------|-----------------|
-| ![Admin Login](./screenshots/05_admin_login.png) | ![Admin Dashboard](./screenshots/06_admin_dashboard.png) |
-
-| Analytics | Manage Trips |
-|-----------|-------------|
-| ![Analytics](./screenshots/07_admin_analytics.png) | ![Manage Trips](./screenshots/08_admin_manage_trips.png) |
-
-| Trip Packages | Checklists |
-|---------------|-----------|
-| ![Trip Packages](./screenshots/09_admin_trip_packages.png) | ![Checklists](./screenshots/10_admin_checklists.png) |
-
-| User Management | Reports & Insights |
-|-----------------|-------------------|
-| ![User Management](./screenshots/11_admin_users.png) | ![Reports](./screenshots/12_admin_reports.png) |
-
-| Admin Profile | Settings |
-|---------------|---------|
-| ![Admin Profile](./screenshots/13_admin_profile.png) | ![Settings](./screenshots/14_admin_settings.png) |
+- [Overview](#-overview)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Environment Variables](#-environment-variables)
+- [Database Architecture](#-database-architecture)
+- [API Overview](#-api-overview)
+- [Team](#-team)
 
 ---
 
-## 🎯 Project Overview
-Globetrotter simplifies trip planning by centralizing itineraries, budgets, packing lists, and journaling in a beautifully designed, modern interface. It also includes a robust, role-based **Admin Console** for platform management and analytics. 
+## 🎯 Overview
 
-Recently updated to feature enterprise-grade security headers, robust request validation, and an overhauled UI utilizing clean typography and Lucide-React iconography.
+Globetrotter simplifies trip planning by centralizing itineraries, budgets, packing lists, and journaling in a clean, modern interface — backed by a role-based **Admin Console** for platform management and analytics.
+
+The stack is built around a hardened Express API (Helmet, strict CORS, request sanitization, and rate limiting), a normalized Prisma data model with indexed hot query paths, and two independent React front ends sharing a consistent **Sunset Coral** design system.
+
+---
+
+## 🚀 Features
+
+### 👤 User Platform (`/frontend`)
+- **Intelligent Dashboard** — dynamic greeting, personalized trip recommendations, and stat tracking.
+- **Itinerary Builder** — plan multi-city stops, attach activities, and visualize routes on interactive Leaflet maps.
+- **Budget Tracker** — visual expense tracking with category breakdowns via Recharts.
+- **Travel Utilities** — interactive packing checklists and a rich-text trip journal.
+- **Community** — publish itineraries to the public gallery, discover top destinations, and clone other users' trips to your own profile.
+
+### 🛡️ Admin Console (`/admin`)
+- **Secure Auth** — strict route guarding, infinite-load prevention, and dedicated admin credentials.
+- **Analytics Dashboard** — real-time metrics for user signups, popular destinations, and seasonal trends.
+- **User Management** — global overview of all registered users, with activity views, role assignment, and access control.
+- **Platform Oversight** — monitor public trips, manage global activities, and oversee community engagement.
+
+### ⚙️ Backend & Data (`/backend`)
+- **Hardened APIs** — `helmet` for secure HTTP headers, strict CORS whitelisting, and payload sanitization middleware.
+- **Validation** — regex-based email and password-strength checks on every signup path.
+- **Performance** — Prisma indexes on every foreign key and hot filter column (`userId`, `isPublic`, `status`, `createdAt`, …) for fast, responsive queries as data grows.
+- **Observability** — a `/health` endpoint that pings the database and reports live connection latency and process uptime.
+- **Resilience** — graceful shutdown that drains in-flight requests and cleanly closes the database connection pool on `SIGTERM`/`SIGINT`.
 
 ---
 
@@ -55,68 +68,70 @@ Recently updated to feature enterprise-grade security headers, robust request va
 |---|---|
 | **Frontend** | React, Vite, Framer Motion, Tailwind CSS v3, Lucide-React |
 | **Admin Panel** | React, Vite, Recharts (Analytics), Axios Interceptors |
+| **Theme** | Sunset Coral palette · Sora (display) + Manrope (body) typography |
 | **Backend** | Node.js, Express, Helmet (Security), CORS, Rate Limiting |
-| **ORM & DB** | Prisma ORM, SQLite (Local Dev) / MySQL (Production Ready) |
-| **Auth** | JWT (JSON Web Tokens), bcryptjs, Role-Based Access Control (RBAC) |
+| **ORM & DB** | Prisma ORM, SQLite (local dev) / MySQL (production-ready) |
+| **Auth** | JWT, bcryptjs, Role-Based Access Control (RBAC) |
 | **Maps** | Leaflet.js, OpenStreetMap |
 | **Email** | Nodemailer |
 
 ---
 
-## 🚀 Features
+## 📁 Project Structure
 
-### User Platform (`/frontend`)
-*   **Intelligent Dashboard:** Dynamic greeting, personalized trip recommendations, and stat tracking.
-*   **Itinerary Builder:** Plan multi-city stops, attach activities, and visualize routes on interactive Leaflet maps.
-*   **Budget Tracker:** Visual expense tracking with category breakdowns via Recharts.
-*   **Travel Utilities:** Interactive packing checklists and a rich-text trip journal.
-*   **Community:** Publish itineraries to the public gallery, discover top destinations, and seamlessly clone other users' trips to your profile.
-
-### Admin Console (`/admin`)
-*   **Secure Auth:** Strict route guarding, infinite-load prevention, and dedicated admin credentials.
-*   **Analytics Dashboard:** Real-time metrics visualization including user signups, popular destinations, and seasonal trends.
-*   **User Management:** Global overview of all registered users with abilities to view activity, assign roles, and manage access.
-*   **Platform Oversight:** Monitor public trips, manage global activities, and oversee community engagement.
-
-### Backend Security (`/backend`)
-*   **Hardened APIs:** Configured `helmet` for secure HTTP headers and cross-origin policies.
-*   **Strict CORS:** Whitelisted domains to prevent cross-site request forgery.
-*   **Sanitization:** Custom middleware to trim and sanitize incoming request payloads.
-*   **Validation:** Robust regex-based validation for emails and password strength on user and admin signups.
+```
+globetrotter-travel-planner/
+├── backend/            # Express API + Prisma ORM
+│   ├── prisma/         # Schema, migrations, seed scripts
+│   └── src/
+│       ├── controllers/
+│       ├── routes/
+│       ├── middleware/
+│       └── services/
+├── frontend/           # Traveler-facing React app (Vite)
+│   └── src/
+│       ├── pages/
+│       ├── components/
+│       └── admin/      # Embedded admin views
+└── admin/               # Standalone admin console (Vite)
+    └── src/
+        ├── pages/
+        └── layouts/
+```
 
 ---
 
 ## 💻 Getting Started
 
 ### Prerequisites
-*   Node.js 18+
-*   NPM or Yarn
-*   *(Optional)* MySQL if migrating from SQLite.
+- Node.js 18+
+- npm or yarn
+- *(Optional)* MySQL, if migrating off SQLite for production
 
-### 1. Repository Setup
+### 1. Clone the repository
 ```bash
-git clone https://github.com/dev-jeelpatel/globetrotter-odoo-hackathon.git
-cd globetrotter-odoo-hackathon
+git clone https://github.com/Krish2325/globetrotter-travel-planner.git
+cd globetrotter-travel-planner
 ```
 
-### 2. Backend Initialization (Port 5000)
+### 2. Backend setup (port 5000)
 ```bash
 cd backend
 npm install
 
-# Configure Environment
+# Configure environment
 cp .env.example .env
-# Important: Update JWT_SECRET and SMTP details in .env
+# Update JWT_SECRET and email credentials in .env
 
-# Initialize Database
+# Initialize the database
 npx prisma db push
 node prisma/seed.js
 
-# Start Development Server
+# Start the API
 npm run dev
 ```
 
-### 3. User Frontend Initialization (Port 5173)
+### 3. User frontend setup (port 5173)
 ```bash
 # In a new terminal
 cd frontend
@@ -124,7 +139,7 @@ npm install
 npm run dev
 ```
 
-### 4. Admin Panel Initialization (Port 5174)
+### 4. Admin panel setup (port 5174)
 ```bash
 # In a new terminal
 cd admin
@@ -134,11 +149,65 @@ npm run dev
 
 ---
 
-## 🗄 Database Architecture
+## 🔐 Environment Variables
 
-Globetrotter features a fully normalized relational database schema via Prisma.
-Key models include: `User`, `Trip`, `City`, `Stop`, `Activity`, `Budget`, `Expense`, `Checklist`, `Note`, and `CommunityShare`.
+Configured in `backend/.env` (see [`backend/.env.example`](./backend/.env.example)):
 
-*(To migrate to MySQL for production, simply update the `DATABASE_URL` inside `.env` to your MySQL connection string and re-run `npx prisma db push`)*.
+| Variable | Description |
+|---|---|
+| `PORT` | Port the API server listens on (default `5000`) |
+| `NODE_ENV` | `development` or `production` |
+| `DATABASE_URL` | Prisma connection string (SQLite file path, or a MySQL URL in production) |
+| `JWT_SECRET` | Secret used to sign authentication tokens |
+| `JWT_EXPIRES_IN` | Token lifetime (e.g. `7d`) |
+| `CLIENT_URL` | Allowed origin(s) for CORS in production |
+| `EMAIL_FROM` | Sender address for Nodemailer |
+| `EMAIL_PASSWORD` | App password for the sender mailbox |
 
 ---
+
+## 🗄 Database Architecture
+
+Globetrotter uses a fully normalized relational schema via Prisma, with indexes on every foreign key and frequently-filtered column to keep queries fast as data scales.
+
+**Core models:** `User`, `Trip`, `City`, `Stop`, `Activity`, `Budget`, `Expense`, `Checklist`, `Note`, `CommunityShare`, `TripCopy`
+
+To migrate to MySQL for production, update `DATABASE_URL` in `.env` to your MySQL connection string and re-run `npx prisma db push`.
+
+---
+
+## 🔌 API Overview
+
+All routes are mounted under `/api` (see [`backend/src/app.js`](./backend/src/app.js)):
+
+| Route | Resource |
+|---|---|
+| `/api/auth` | Authentication & email verification |
+| `/api/users` | User profiles |
+| `/api/trips` | Trip CRUD & itineraries |
+| `/api/stops` | Itinerary stops |
+| `/api/activities` | Activity discovery |
+| `/api/cities` | City discovery |
+| `/api/budgets` | Trip budgets |
+| `/api/expenses` | Expense tracking |
+| `/api/checklists` | Packing checklists |
+| `/api/notes` | Trip journal notes |
+| `/api/community` | Public sharing & community gallery |
+| `/api/analytics` | Admin analytics |
+
+`GET /health` reports API and database status, including live round-trip latency.
+
+---
+
+## 👥 Team
+
+| Contributor | Focus Area |
+|---|---|
+| [Krish2325](https://github.com/Krish2325) | Project owner & maintainer |
+| [DharmTrivedi](https://github.com/DharmTrivedi) | Backend & database management |
+| [Jeelpatel-48](https://github.com/Jeelpatel-48) | Full-stack (frontend, backend, admin) |
+| [Areen82](https://github.com/Areen82) | Frontend features & UI |
+
+---
+
+<p align="center">Built with ❤️ for travelers who love to plan.</p>
