@@ -18,7 +18,7 @@ export default function ManageUsers(){
       <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:"0.875rem"}}>
         {STATS.map((s,i)=>(
           <motion.div key={s.label} style={{...card,padding:"1.25rem"}} initial={{opacity:0,y:16}} animate={{opacity:1,y:0}} transition={{delay:i*0.07}}>
-            <div style={{display:"flex",alignItems:"center",gap:"0.75rem"}}><div style={{width:36,height:36,borderRadius:12,background:s.color+"18",display:"flex",alignItems:"center",justifyContent:"center"}}><s.icon size={17} color={s.color}/></div><div><p style={{fontSize:"1.5rem",fontWeight:800,fontFamily:"Poppins,sans-serif",color:"#1F2937"}}>{loading?"...":s.value}</p><p style={{fontSize:"0.75rem",color:"#6B7280"}}>{s.label}</p></div></div>
+            <div style={{display:"flex",alignItems:"center",gap:"0.75rem"}}><div style={{width:36,height:36,borderRadius:12,background:s.color+"18",display:"flex",alignItems:"center",justifyContent:"center"}}><s.icon size={17} color={s.color}/></div><div><p style={{fontSize:"1.5rem",fontWeight:800,fontFamily:"Sora,sans-serif",color:"#1F2937"}}>{loading?"...":s.value}</p><p style={{fontSize:"0.75rem",color:"#6B7280"}}>{s.label}</p></div></div>
           </motion.div>
         ))}
       </div>

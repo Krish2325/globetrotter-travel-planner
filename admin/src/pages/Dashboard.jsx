@@ -44,7 +44,7 @@ export default function Dashboard() {
                 <div style={{width:44,height:44,borderRadius:14,background:color+"18",display:"flex",alignItems:"center",justifyContent:"center"}}><Icon size={20} color={color}/></div>
                 <span style={{display:"flex",alignItems:"center",gap:3,fontSize:"0.75rem",fontWeight:700,color:"#22C55E",background:"rgba(34,197,94,0.1)",padding:"0.2rem 0.5rem",borderRadius:20}}><ArrowUpRight size={12}/>Live</span>
               </div>
-              <p style={{fontSize:"2rem",fontWeight:800,fontFamily:"Poppins,sans-serif",color:"#1F2937"}}>{loading?"...":value}</p>
+              <p style={{fontSize:"2rem",fontWeight:800,fontFamily:"Sora,sans-serif",color:"#1F2937"}}>{loading?"...":value}</p>
               <p style={{fontSize:"0.8125rem",color:"#6B7280",marginTop:"0.15rem"}}>{label}</p>
             </div>
           </motion.div>

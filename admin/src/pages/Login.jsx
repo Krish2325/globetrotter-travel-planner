@@ -52,7 +52,7 @@ export default function Login() {
           }}>
             <Shield size={40} color="#fff" />
           </div>
-          <h1 style={{ fontFamily:'Poppins,sans-serif', fontSize:'2.5rem', fontWeight:800, marginBottom:'0.5rem' }}>Globetrotter</h1>
+          <h1 style={{ fontFamily:'Sora,sans-serif', fontSize:'2.5rem', fontWeight:800, marginBottom:'0.5rem' }}>Globetrotter</h1>
           <p style={{ fontSize:'1.25rem', color:'rgba(255,255,255,0.7)', marginBottom:'2.5rem' }}>Admin Console</p>
           <div style={{ display:'flex', flexDirection:'column', gap:'0.75rem', textAlign:'left' }}>
             {FEATURES.map(({ icon:Icon, text }) => (
@@ -79,10 +79,10 @@ export default function Login() {
             <div style={{ width:56, height:56, borderRadius:18, background:'linear-gradient(135deg,#B33E1A,#F2683A)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 0.75rem' }}>
               <Shield size={28} color="#fff" />
             </div>
-            <h1 style={{ fontFamily:'Poppins,sans-serif', fontWeight:800, fontSize:'1.25rem', color:'#B33E1A' }}>Globetrotter Admin</h1>
+            <h1 style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:'1.25rem', color:'#B33E1A' }}>Globetrotter Admin</h1>
           </div>
 
-          <h2 style={{ fontFamily:'Poppins,sans-serif', fontWeight:700, fontSize:'1.875rem', color:'#1F2937', marginBottom:'0.25rem' }}>Admin Sign In</h2>
+          <h2 style={{ fontFamily:'Sora,sans-serif', fontWeight:700, fontSize:'1.875rem', color:'#1F2937', marginBottom:'0.25rem' }}>Admin Sign In</h2>
           <p style={{ fontSize:'0.875rem', color:'#6B7280', marginBottom:'2rem' }}>Restricted to authorized administrators only</p>
 
           <div className="glass-sm" style={{ padding:'2rem' }}>

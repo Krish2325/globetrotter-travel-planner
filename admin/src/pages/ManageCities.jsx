@@ -120,7 +120,7 @@ export default function ManageCities() {
                 {c.imageUrl && <img src={c.imageUrl} alt={c.name} style={{width:"100%",height:"100%",objectFit:"cover"}}/>}
                 <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(0,0,0,0.4),transparent)"}}/>
                 <div style={{position:"absolute",bottom:10,left:12,right:12,display:"flex",alignItems:"flex-end",justifyContent:"space-between"}}>
-                  <div><p style={{color:"#fff",fontWeight:800,fontFamily:"Poppins,sans-serif",fontSize:"1.125rem"}}>{c.name}</p><p style={{color:"rgba(255,255,255,0.75)",fontSize:"0.75rem"}}>{c.country}</p></div>
+                  <div><p style={{color:"#fff",fontWeight:800,fontFamily:"Sora,sans-serif",fontSize:"1.125rem"}}>{c.name}</p><p style={{color:"rgba(255,255,255,0.75)",fontSize:"0.75rem"}}>{c.country}</p></div>
                   <span style={{background:"rgba(255,255,255,0.2)",backdropFilter:"blur(8px)",color:"#fff",padding:"0.2rem 0.5rem",borderRadius:20,fontSize:"0.65rem",fontWeight:700,border:"1px solid rgba(255,255,255,0.3)"}}>{c.countryCode}</span>
                 </div>
               </div>
@@ -147,7 +147,7 @@ export default function ManageCities() {
             <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} style={{position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",backdropFilter:"blur(4px)"}} onClick={closeModal}/>
             <motion.div initial={{opacity:0,scale:0.95,y:20}} animate={{opacity:1,scale:1,y:0}} exit={{opacity:0,scale:0.95,y:20}} style={{background:"#fff",borderRadius:24,padding:"2rem",width:"100%",maxWidth:500,position:"relative",zIndex:51,maxHeight:"90vh",overflowY:"auto"}}>
               <button onClick={closeModal} style={{position:"absolute",top:20,right:20,background:"none",border:"none",cursor:"pointer"}}><X size={20} color="#9CA3AF"/></button>
-              <h2 style={{fontFamily:"Poppins,sans-serif",fontSize:"1.25rem",fontWeight:700,marginBottom:"1.5rem"}}>{editingCity ? "Edit City" : "Add New City"}</h2>
+              <h2 style={{fontFamily:"Sora,sans-serif",fontSize:"1.25rem",fontWeight:700,marginBottom:"1.5rem"}}>{editingCity ? "Edit City" : "Add New City"}</h2>
               <form onSubmit={submitForm} style={{display:"flex",flexDirection:"column",gap:"1rem"}}>
                 {formError && <div style={{padding:"0.75rem",background:"#FEF2F2",color:"#991B1B",borderRadius:8,fontSize:"0.875rem"}}>{formError}</div>}
                 

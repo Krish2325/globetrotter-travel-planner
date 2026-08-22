@@ -56,7 +56,7 @@ function Sidebar({ onClose }) {
             <Shield size={18} color="#fff" />
           </div>
           <div>
-            <p style={{ fontFamily:'Poppins,sans-serif', fontWeight:700, fontSize:'0.9375rem', color:'#B33E1A' }}>Globetrotter</p>
+            <p style={{ fontFamily:'Sora,sans-serif', fontWeight:700, fontSize:'0.9375rem', color:'#B33E1A' }}>Globetrotter</p>
             <p style={{ fontSize:'0.625rem', color:'#9CA3AF', fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase' }}>Admin Console</p>
           </div>
           {onClose && (

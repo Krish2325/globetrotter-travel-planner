@@ -32,7 +32,7 @@ export default function Profile() {
                   <Camera size={13} color="#fff"/>
                 </button>
               </div>
-              <h2 style={{fontFamily:"Poppins,sans-serif",fontWeight:700,fontSize:"1.125rem",color:"#1F2937"}}>{form.name}</h2>
+              <h2 style={{fontFamily:"Sora,sans-serif",fontWeight:700,fontSize:"1.125rem",color:"#1F2937"}}>{form.name}</h2>
               <p style={{fontSize:"0.8rem",color:"#6B7280",marginTop:4}}>{form.email}</p>
               <div style={{display:"inline-flex",alignItems:"center",gap:6,marginTop:"0.75rem",padding:"0.3rem 0.875rem",borderRadius:20,background:"rgba(242,104,58,0.1)",border:"1px solid rgba(242,104,58,0.2)"}}>
                 <Shield size={12} color="#F2683A"/>
@@ -50,7 +50,7 @@ export default function Profile() {
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"0.75rem"}}>
                 {STATS.map(s=>(
                   <div key={s.label} style={{padding:"0.875rem",borderRadius:16,background:"rgba(214,122,74,0.07)",border:"1px solid rgba(214,122,74,0.15)",textAlign:"center"}}>
-                    <p style={{fontSize:"1.375rem",fontWeight:800,fontFamily:"Poppins,sans-serif",color:"#F2683A"}}>{s.val}</p>
+                    <p style={{fontSize:"1.375rem",fontWeight:800,fontFamily:"Sora,sans-serif",color:"#F2683A"}}>{s.val}</p>
                     <p style={{fontSize:"0.65rem",color:"#9CA3AF",marginTop:2,lineHeight:1.3}}>{s.label}</p>
                   </div>
                 ))}

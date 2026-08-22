@@ -21,7 +21,7 @@ export default function Reports() {
                 <div style={{width:48,height:48,borderRadius:16,background:r.color+"18",display:"flex",alignItems:"center",justifyContent:"center"}}><r.icon size={22} color={r.color}/></div>
                 <div style={{textAlign:"right"}}><p style={{fontSize:"0.7rem",color:"#9CA3AF"}}>{r.period}</p><p style={{fontSize:"0.7rem",color:"#9CA3AF"}}>{r.size}</p></div>
               </div>
-              <h3 style={{fontWeight:700,fontFamily:"Poppins,sans-serif",color:"#1F2937",marginBottom:"0.375rem"}}>{r.title}</h3>
+              <h3 style={{fontWeight:700,fontFamily:"Sora,sans-serif",color:"#1F2937",marginBottom:"0.375rem"}}>{r.title}</h3>
               <p style={{fontSize:"0.8rem",color:"#6B7280",marginBottom:"1.25rem",lineHeight:1.5}}>{r.desc}</p>
               <div style={{display:"flex",gap:"0.625rem"}}>
                 <motion.button whileHover={{scale:1.02}} className="btn btn-secondary" style={{flex:1,justifyContent:"center",padding:"0.5rem",fontSize:"0.8rem"}}><Download size={13}/>PDF</motion.button>

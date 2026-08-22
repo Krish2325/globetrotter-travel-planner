@@ -42,7 +42,7 @@ export default function Signup() {
           <div style={{ width:60, height:60, borderRadius:20, background:'linear-gradient(135deg,#B33E1A,#F2683A)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 0.75rem', boxShadow:'0 8px 24px rgba(242,104,58,0.3)' }}>
             <Shield size={30} color="#fff" />
           </div>
-          <h1 style={{ fontFamily:'Poppins,sans-serif', fontWeight:800, fontSize:'1.875rem', color:'#1F2937' }}>Create Admin Account</h1>
+          <h1 style={{ fontFamily:'Sora,sans-serif', fontWeight:800, fontSize:'1.875rem', color:'#1F2937' }}>Create Admin Account</h1>
           <p style={{ fontSize:'0.875rem', color:'#6B7280', marginTop:'0.25rem' }}>Register to manage Globetrotter platform</p>
         </div>
 
@@ -52,7 +52,7 @@ export default function Signup() {
             <div style={{ width:64, height:64, borderRadius:'50%', background:'rgba(34,197,94,0.12)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 1rem' }}>
               <CheckCircle2 size={32} color="#22C55E" />
             </div>
-            <h3 style={{ fontFamily:'Poppins,sans-serif', fontWeight:700, fontSize:'1.25rem', color:'#1F2937', marginBottom:'0.5rem' }}>Account Created!</h3>
+            <h3 style={{ fontFamily:'Sora,sans-serif', fontWeight:700, fontSize:'1.25rem', color:'#1F2937', marginBottom:'0.5rem' }}>Account Created!</h3>
             <p style={{ fontSize:'0.875rem', color:'#6B7280' }}>Redirecting to dashboard...</p>
           </motion.div>
         ) : (

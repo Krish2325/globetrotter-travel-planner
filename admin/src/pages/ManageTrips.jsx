@@ -95,7 +95,7 @@ export default function ManageTrips(){
             <motion.div initial={{scale:0.95,y:16}} animate={{scale:1,y:0}} exit={{scale:0.95,y:16}}
               style={{...card,width:"100%",maxWidth:560,maxHeight:"90vh",overflowY:"auto",padding:0}}>
               <div style={{padding:"1.5rem",borderBottom:"1px solid rgba(214,122,74,0.15)",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-                <h2 style={{fontFamily:"Poppins,sans-serif",fontWeight:700,color:"#1F2937"}}>{editing?"Edit Trip":"Add New Trip"}</h2>
+                <h2 style={{fontFamily:"Sora,sans-serif",fontWeight:700,color:"#1F2937"}}>{editing?"Edit Trip":"Add New Trip"}</h2>
                 <button className="btn-icon" onClick={()=>setModal(false)}><X size={15}/></button>
               </div>
               <div style={{padding:"1.5rem",display:"flex",flexDirection:"column",gap:"1rem"}}>
