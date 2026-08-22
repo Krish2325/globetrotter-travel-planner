@@ -103,11 +103,11 @@ export default function TripPackages() {
       </motion.div>
       
       {loading ? (
-        <div style={{textAlign:"center", padding:"3rem"}}><Loader className="spin" size={24} color="#2E7D6B" style={{margin:"0 auto"}}/></div>
+        <div style={{textAlign:"center", padding:"3rem"}}><Loader className="spin" size={24} color="#4F46E5" style={{margin:"0 auto"}}/></div>
       ) : (
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(320px,1fr))",gap:"1.25rem"}}>
           {sorted.map((p,i)=>(
-            <motion.div key={p.id} style={card} initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:i*0.07}} whileHover={{y:-5,boxShadow:"0 20px 50px rgba(46,125,107,0.14)"}}>
+            <motion.div key={p.id} style={card} initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:i*0.07}} whileHover={{y:-5,boxShadow:"0 20px 50px rgba(79, 70, 229,0.14)"}}>
               <div style={{position:"relative",height:200,overflow:"hidden",borderRadius:"24px 24px 0 0", background:"#e5e7eb"}}>
                 {p.coverImage && <img src={p.coverImage} alt={p.title} style={{width:"100%",height:"100%",objectFit:"cover"}}/>}
                 <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(0,0,0,0.55),transparent)"}}/>
@@ -118,13 +118,13 @@ export default function TripPackages() {
                   </div>
                 </div>
                 <div style={{position:"absolute",bottom:12,left:12,right:12}}>
-                  <p style={{color:"#fff",fontWeight:800,fontFamily:"Poppins,sans-serif",fontSize:"1.125rem"}}>{p.title}</p>
+                  <p style={{color:"#fff",fontWeight:800,fontFamily:"Sora,sans-serif",fontSize:"1.125rem"}}>{p.title}</p>
                   <p style={{color:"rgba(255,255,255,0.7)",fontSize:"0.8rem"}}>{p.durationDays ? `${p.durationDays} Days` : "Custom Duration"} · {p.bestSeason || "All Year"}</p>
                 </div>
               </div>
               <div style={{padding:"1.25rem"}}>
                 <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-                  <p style={{fontSize:"1.375rem",fontWeight:800,fontFamily:"Poppins,sans-serif",color:"#2E7D6B"}}>{p.basePrice ? `Rs. ${p.basePrice}` : "Contact for price"}</p>
+                  <p style={{fontSize:"1.375rem",fontWeight:800,fontFamily:"Sora,sans-serif",color:"#4F46E5"}}>{p.basePrice ? `Rs. ${p.basePrice}` : "Contact for price"}</p>
                   <div style={{display:"flex",gap:4}}>
                     <button onClick={()=>openModal(p)} className="btn-icon"><Edit2 size={13}/></button>
                     <button onClick={()=>deleteTrip(p.id)} className="btn-icon"><Trash2 size={13} color="#EF4444"/></button>
@@ -144,7 +144,7 @@ export default function TripPackages() {
             <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} style={{position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",backdropFilter:"blur(4px)"}} onClick={closeModal}/>
             <motion.div initial={{opacity:0,scale:0.95,y:20}} animate={{opacity:1,scale:1,y:0}} exit={{opacity:0,scale:0.95,y:20}} style={{background:"#fff",borderRadius:24,padding:"2rem",width:"100%",maxWidth:600,position:"relative",zIndex:51,maxHeight:"90vh",overflowY:"auto"}}>
               <button onClick={closeModal} style={{position:"absolute",top:20,right:20,background:"none",border:"none",cursor:"pointer"}}><X size={20} color="#9CA3AF"/></button>
-              <h2 style={{fontFamily:"Poppins,sans-serif",fontSize:"1.25rem",fontWeight:700,marginBottom:"1.5rem"}}>{editingTrip ? "Edit Package" : "Add New Package"}</h2>
+              <h2 style={{fontFamily:"Sora,sans-serif",fontSize:"1.25rem",fontWeight:700,marginBottom:"1.5rem"}}>{editingTrip ? "Edit Package" : "Add New Package"}</h2>
               
               <form onSubmit={submitForm} style={{display:"flex",flexDirection:"column",gap:"1rem"}}>
                 {formError && <div style={{padding:"0.75rem",background:"#FEF2F2",color:"#991B1B",borderRadius:8,fontSize:"0.875rem"}}>{formError}</div>}

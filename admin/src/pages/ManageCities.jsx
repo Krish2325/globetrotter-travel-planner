@@ -104,29 +104,29 @@ export default function ManageCities() {
           <input className="input" placeholder="Search cities..." style={{paddingLeft:40}} value={q} onChange={e=>setQ(e.target.value)}/>
         </div>
         {["All","Domestic","International"].map(t=>(
-          <button key={t} onClick={()=>setType(t)} className="btn" style={{background:type===t?"linear-gradient(135deg,#2E7D6B,#3D9B85)":"rgba(255,255,255,0.7)",color:type===t?"#fff":"#6B7280",border:"1px solid rgba(124,154,126,0.2)"}}>
+          <button key={t} onClick={()=>setType(t)} className="btn" style={{background:type===t?"linear-gradient(135deg,#4F46E5,#6366F1)":"rgba(255,255,255,0.7)",color:type===t?"#fff":"#6B7280",border:"1px solid rgba(99, 102, 241,0.2)"}}>
             {t}
           </button>
         ))}
       </div>
       
       {loading ? (
-        <div style={{textAlign:"center", padding:"3rem"}}><Loader className="spin" size={24} color="#2E7D6B" style={{margin:"0 auto"}}/></div>
+        <div style={{textAlign:"center", padding:"3rem"}}><Loader className="spin" size={24} color="#4F46E5" style={{margin:"0 auto"}}/></div>
       ) : (
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))",gap:"1rem"}}>
           {filtered.map((c,i)=>(
-            <motion.div key={c.id} style={card} initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:i*0.06}} whileHover={{y:-4,boxShadow:"0 16px 48px rgba(46,125,107,0.12)"}}>
+            <motion.div key={c.id} style={card} initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:i*0.06}} whileHover={{y:-4,boxShadow:"0 16px 48px rgba(79, 70, 229,0.12)"}}>
               <div style={{height:140,overflow:"hidden",borderRadius:"24px 24px 0 0",position:"relative", background:"#e5e7eb"}}>
                 {c.imageUrl && <img src={c.imageUrl} alt={c.name} style={{width:"100%",height:"100%",objectFit:"cover"}}/>}
                 <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(0,0,0,0.4),transparent)"}}/>
                 <div style={{position:"absolute",bottom:10,left:12,right:12,display:"flex",alignItems:"flex-end",justifyContent:"space-between"}}>
-                  <div><p style={{color:"#fff",fontWeight:800,fontFamily:"Poppins,sans-serif",fontSize:"1.125rem"}}>{c.name}</p><p style={{color:"rgba(255,255,255,0.75)",fontSize:"0.75rem"}}>{c.country}</p></div>
+                  <div><p style={{color:"#fff",fontWeight:800,fontFamily:"Sora,sans-serif",fontSize:"1.125rem"}}>{c.name}</p><p style={{color:"rgba(255,255,255,0.75)",fontSize:"0.75rem"}}>{c.country}</p></div>
                   <span style={{background:"rgba(255,255,255,0.2)",backdropFilter:"blur(8px)",color:"#fff",padding:"0.2rem 0.5rem",borderRadius:20,fontSize:"0.65rem",fontWeight:700,border:"1px solid rgba(255,255,255,0.3)"}}>{c.countryCode}</span>
                 </div>
               </div>
               <div style={{padding:"1rem"}}>
                 <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-                  <div style={{display:"flex",alignItems:"center",gap:6,fontSize:"0.8rem",color:"#6B7280"}}><MapPin size={13} color="#2E7D6B"/>{c.latitude.toFixed(2)}, {c.longitude.toFixed(2)}</div>
+                  <div style={{display:"flex",alignItems:"center",gap:6,fontSize:"0.8rem",color:"#6B7280"}}><MapPin size={13} color="#4F46E5"/>{c.latitude.toFixed(2)}, {c.longitude.toFixed(2)}</div>
                   <span className={"badge "+(getCityType(c.countryCode)==="Domestic"?"badge-cream":"badge-teal")}>{getCityType(c.countryCode)}</span>
                 </div>
                 <div style={{display:"flex", gap:"0.5rem", marginTop:"0.75rem"}}>
@@ -147,7 +147,7 @@ export default function ManageCities() {
             <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} style={{position:"absolute",inset:0,background:"rgba(0,0,0,0.5)",backdropFilter:"blur(4px)"}} onClick={closeModal}/>
             <motion.div initial={{opacity:0,scale:0.95,y:20}} animate={{opacity:1,scale:1,y:0}} exit={{opacity:0,scale:0.95,y:20}} style={{background:"#fff",borderRadius:24,padding:"2rem",width:"100%",maxWidth:500,position:"relative",zIndex:51,maxHeight:"90vh",overflowY:"auto"}}>
               <button onClick={closeModal} style={{position:"absolute",top:20,right:20,background:"none",border:"none",cursor:"pointer"}}><X size={20} color="#9CA3AF"/></button>
-              <h2 style={{fontFamily:"Poppins,sans-serif",fontSize:"1.25rem",fontWeight:700,marginBottom:"1.5rem"}}>{editingCity ? "Edit City" : "Add New City"}</h2>
+              <h2 style={{fontFamily:"Sora,sans-serif",fontSize:"1.25rem",fontWeight:700,marginBottom:"1.5rem"}}>{editingCity ? "Edit City" : "Add New City"}</h2>
               <form onSubmit={submitForm} style={{display:"flex",flexDirection:"column",gap:"1rem"}}>
                 {formError && <div style={{padding:"0.75rem",background:"#FEF2F2",color:"#991B1B",borderRadius:8,fontSize:"0.875rem"}}>{formError}</div>}
                 

@@ -68,7 +68,7 @@ export default function ManageTrips(){
                     <tr key={t.id}>
                       <td><div style={{display:"flex",alignItems:"center",gap:"0.75rem"}}><div style={{width:36,height:36,borderRadius:12,flexShrink:0}} className={"mesh-"+((i%6)+1)}/><span style={{fontWeight:600}}>{t.title}</span></div></td>
                       <td style={{color:"#6B7280"}}>{t.destination||"-"}</td>
-                      <td style={{fontWeight:700,color:"#2E7D6B"}}>{t.basePrice?"Rs. "+t.basePrice.toLocaleString():"-"}</td>
+                      <td style={{fontWeight:700,color:"#4F46E5"}}>{t.basePrice?"Rs. "+t.basePrice.toLocaleString():"-"}</td>
                       <td><span className="badge badge-cream">{t.bestSeason||"-"}</span></td>
                       <td><span className={"badge "+(STATUS_C[t.status]||"badge-cream")}>{t.status}</span></td>
                       <td><div style={{display:"flex",alignItems:"center",gap:3,fontWeight:700,fontSize:"0.875rem",color:"#F59E0B"}}><Star size={13} style={{fill:"#F59E0B",color:"#F59E0B"}}/>{t.rating||0}</div></td>
@@ -94,8 +94,8 @@ export default function ManageTrips(){
             onClick={e=>{ if(e.target===e.currentTarget) setModal(false); }}>
             <motion.div initial={{scale:0.95,y:16}} animate={{scale:1,y:0}} exit={{scale:0.95,y:16}}
               style={{...card,width:"100%",maxWidth:560,maxHeight:"90vh",overflowY:"auto",padding:0}}>
-              <div style={{padding:"1.5rem",borderBottom:"1px solid rgba(124,154,126,0.15)",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-                <h2 style={{fontFamily:"Poppins,sans-serif",fontWeight:700,color:"#1F2937"}}>{editing?"Edit Trip":"Add New Trip"}</h2>
+              <div style={{padding:"1.5rem",borderBottom:"1px solid rgba(99, 102, 241,0.15)",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+                <h2 style={{fontFamily:"Sora,sans-serif",fontWeight:700,color:"#1F2937"}}>{editing?"Edit Trip":"Add New Trip"}</h2>
                 <button className="btn-icon" onClick={()=>setModal(false)}><X size={15}/></button>
               </div>
               <div style={{padding:"1.5rem",display:"flex",flexDirection:"column",gap:"1rem"}}>
@@ -122,7 +122,7 @@ export default function ManageTrips(){
                   </div>
                 </div>
               </div>
-              <div style={{padding:"1rem 1.5rem",borderTop:"1px solid rgba(124,154,126,0.15)",display:"flex",justifyContent:"flex-end",gap:"0.75rem"}}>
+              <div style={{padding:"1rem 1.5rem",borderTop:"1px solid rgba(99, 102, 241,0.15)",display:"flex",justifyContent:"flex-end",gap:"0.75rem"}}>
                 <button className="btn btn-ghost" onClick={()=>setModal(false)}>Cancel</button>
                 <motion.button whileHover={{scale:1.01}} className="btn btn-primary" onClick={save} disabled={saving}>
                   <Save size={14}/>{saving?"Saving...":editing?"Save Changes":"Create Trip"}
