@@ -4,7 +4,7 @@ import api from '../lib/api';
 import { format } from 'date-fns';
 import {
   Map, Calendar, DollarSign, CheckSquare, FileText, Share2,
-  Globe, ArrowLeft, MapPin, Clock
+  Globe, ArrowLeft, ArrowRight, MapPin, Clock
 } from 'lucide-react';
 
 const STATUS_BADGE = {
@@ -60,27 +60,35 @@ export default function TripDetail() {
         <ArrowLeft className="w-4 h-4" /> Back to trips
       </Link>
 
-      <div className="card p-6 bg-gradient-to-r from-primary-600/10 to-ocean-500/5">
-        <div className="flex flex-col md:flex-row md:items-start gap-4 justify-between">
-          <div>
-            <span className={`badge ${STATUS_BADGE[trip.status]} mb-3`}>{trip.status}</span>
-            <h1 className="text-2xl md:text-3xl font-bold font-display text-ink-900">{trip.title}</h1>
-            {trip.description && <p className="text-ink-300 mt-2 max-w-2xl">{trip.description}</p>}
-            <div className="flex flex-wrap items-center gap-4 mt-4 text-sm text-ink-300">
-              <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" />
-                {format(new Date(trip.startDate), 'MMM d')} – {format(new Date(trip.endDate), 'MMM d, yyyy')}
-              </span>
-              <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" />{days} day{days !== 1 ? 's' : ''}</span>
-              {trip.stops?.length > 0 && (
-                <span className="flex items-center gap-1.5"><MapPin className="w-4 h-4" />
-                  {trip.stops.length} stop{trip.stops.length !== 1 ? 's' : ''}
-                </span>
-              )}
-            </div>
+      <div className="card overflow-hidden relative">
+        {trip.coverImage && (
+          <div className="absolute inset-0">
+            <img src={trip.coverImage} alt={trip.title} className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
           </div>
-          <button onClick={handleShare} disabled={sharing} className="btn-secondary shrink-0 gap-2">
-            <Share2 className="w-4 h-4" />{sharing ? 'Sharing…' : 'Share'}
-          </button>
+        )}
+        <div className={`relative p-6 ${trip.coverImage ? '' : 'bg-gradient-to-r from-primary-600/10 to-ocean-500/5'}`}>
+          <div className="flex flex-col md:flex-row md:items-start gap-4 justify-between">
+            <div>
+              <span className={`badge ${STATUS_BADGE[trip.status]} mb-3`}>{trip.status}</span>
+              <h1 className={`text-2xl md:text-3xl font-bold font-display ${trip.coverImage ? 'text-white' : 'text-ink-900'}`}>{trip.title}</h1>
+              {trip.description && <p className={`mt-2 max-w-2xl ${trip.coverImage ? 'text-white/80' : 'text-ink-300'}`}>{trip.description}</p>}
+              <div className={`flex flex-wrap items-center gap-4 mt-4 text-sm ${trip.coverImage ? 'text-white/70' : 'text-ink-300'}`}>
+                <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" />
+                  {format(new Date(trip.startDate), 'MMM d')} – {format(new Date(trip.endDate), 'MMM d, yyyy')}
+                </span>
+                <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" />{days} day{days !== 1 ? 's' : ''}</span>
+                {trip.stops?.length > 0 && (
+                  <span className="flex items-center gap-1.5"><MapPin className="w-4 h-4" />
+                    {trip.stops.length} stop{trip.stops.length !== 1 ? 's' : ''}
+                  </span>
+                )}
+              </div>
+            </div>
+            <button onClick={handleShare} disabled={sharing} className={`btn-secondary shrink-0 gap-2 ${trip.coverImage ? '!bg-white/15 !text-white !border-white/25' : ''}`}>
+              <Share2 className="w-4 h-4" />{sharing ? 'Sharing…' : 'Share'}
+            </button>
+          </div>
         </div>
       </div>
 

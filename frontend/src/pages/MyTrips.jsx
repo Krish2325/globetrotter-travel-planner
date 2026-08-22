@@ -83,7 +83,10 @@ export default function MyTrips() {
           {filtered.map((trip, idx) => (
             <div key={trip.id} className="card-hover overflow-hidden group">
               <Link to={`/trips/${trip.id}`} className="block">
-                <div className={`h-32 ${MESHES[idx % MESHES.length]} relative`}>
+                <div className={`h-32 relative overflow-hidden ${trip.coverImage ? '' : MESHES[idx % MESHES.length]}`}>
+                  {trip.coverImage && (
+                    <img src={trip.coverImage} alt={trip.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                   <div className="absolute bottom-3 left-3">
                     <span className={`badge ${STATUS_BADGE[trip.status]}`}>{trip.status}</span>
