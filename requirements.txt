@@ -104,7 +104,7 @@ globals==17.5.0
 # Database   : MySQL via PlanetScale / Railway.app (production) | local MySQL (dev)
 # Maps       : OpenStreetMap — via Leaflet.js (no API key needed)
 # Email      : Gmail SMTP via Nodemailer (free with App Password)
-# Fonts      : Google Fonts — Poppins + Inter (CDN, free)
+# Fonts      : Google Fonts — Sora + Inter (CDN, free)
 # Icons      : Lucide React (MIT open source)
 # Hosting FE : Vercel (free tier) → user frontend
 # Hosting BE : Render.com (free tier — 750 hrs/month)

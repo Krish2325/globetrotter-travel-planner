@@ -4,12 +4,12 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['Poppins', 'sans-serif'],
+        display: ['Sora', 'sans-serif'],
         body:    ['Inter', 'sans-serif'],
       },
       colors: {
-        cream:  { DEFAULT:'#F7F6F2', 100:'#F7F6F2', 200:'#EFEDE7' },
-        sage:   { DEFAULT:'#2E7D6B', light:'#A7C4A0', dark:'#1E5E52', soft:'#3D9B85' },
+        cream:  { DEFAULT:'#F5F5FC', 100:'#F5F5FC', 200:'#ECECF7' },
+        sage:   { DEFAULT:'#4F46E5', light:'#A5B4FC', dark:'#3730A3', soft:'#6366F1' },
       },
     },
   },
