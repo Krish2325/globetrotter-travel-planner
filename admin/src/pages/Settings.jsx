@@ -19,7 +19,7 @@ export default function Settings() {
           <motion.div key={sec.id} style={card} initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:si*0.08}}>
             <div style={{padding:"1.5rem"}}>
               <div style={{display:"flex",alignItems:"center",gap:"0.625rem",marginBottom:"1.25rem"}}>
-                <div style={{width:36,height:36,borderRadius:12,background:"rgba(46,125,107,0.1)",display:"flex",alignItems:"center",justifyContent:"center"}}><sec.icon size={17} color="#2E7D6B"/></div>
+                <div style={{width:36,height:36,borderRadius:12,background:"rgba(242,104,58,0.1)",display:"flex",alignItems:"center",justifyContent:"center"}}><sec.icon size={17} color="#F2683A"/></div>
                 <p className="section-title">{sec.title}</p>
               </div>
               <div style={{display:"flex",flexDirection:"column",gap:"1rem"}}>

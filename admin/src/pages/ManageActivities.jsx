@@ -24,7 +24,7 @@ export default function ManageActivities() {
       </motion.div>
       <div style={{display:"flex",gap:"0.5rem",flexWrap:"wrap"}}>
         {CATS.map(c=>(
-          <button key={c} onClick={()=>setCat(c)} className="btn" style={{padding:"0.4rem 0.875rem",borderRadius:20,fontSize:"0.8125rem",background:cat===c?"linear-gradient(135deg,#2E7D6B,#3D9B85)":"rgba(255,255,255,0.7)",color:cat===c?"#fff":"#6B7280",border:"1px solid rgba(124,154,126,0.2)"}}>
+          <button key={c} onClick={()=>setCat(c)} className="btn" style={{padding:"0.4rem 0.875rem",borderRadius:20,fontSize:"0.8125rem",background:cat===c?"linear-gradient(135deg,#F2683A,#FB8A4C)":"rgba(255,255,255,0.7)",color:cat===c?"#fff":"#6B7280",border:"1px solid rgba(214,122,74,0.2)"}}>
             {c}
           </button>
         ))}
@@ -48,7 +48,7 @@ export default function ManageActivities() {
               <p style={{fontSize:"0.8rem",color:"#6B7280",marginBottom:"0.75rem"}}>{a.city}</p>
               <div style={{display:"flex",gap:"1rem"}}>
                 <div style={{display:"flex",alignItems:"center",gap:4,fontSize:"0.8rem",color:"#6B7280"}}><Clock size={12} color="#9CA3AF"/>{a.duration}</div>
-                <div style={{display:"flex",alignItems:"center",gap:4,fontSize:"0.875rem",fontWeight:700,color:"#2E7D6B"}}>{a.cost}</div>
+                <div style={{display:"flex",alignItems:"center",gap:4,fontSize:"0.875rem",fontWeight:700,color:"#F2683A"}}>{a.cost}</div>
               </div>
             </div>
           </motion.div>

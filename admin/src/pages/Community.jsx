@@ -21,7 +21,7 @@ export default function Community() {
             <div style={{position:"relative",flex:1,minWidth:200}}><Search size={15} style={{position:"absolute",left:14,top:"50%",transform:"translateY(-50%)",color:"#9CA3AF"}}/><input className="input" placeholder="Search posts..." style={{paddingLeft:40}} value={q} onChange={e=>setQ(e.target.value)}/></div>
             <div style={{display:"flex",gap:"0.5rem"}}>
               {["All","active","flagged"].map(f=>(
-                <button key={f} onClick={()=>setFilter(f)} className="btn" style={{padding:"0.5rem 0.875rem",background:filter===f?"linear-gradient(135deg,#2E7D6B,#3D9B85)":"rgba(255,255,255,0.7)",color:filter===f?"#fff":"#6B7280",border:"1px solid rgba(124,154,126,0.2)",fontSize:"0.8125rem",borderRadius:12}}>
+                <button key={f} onClick={()=>setFilter(f)} className="btn" style={{padding:"0.5rem 0.875rem",background:filter===f?"linear-gradient(135deg,#F2683A,#FB8A4C)":"rgba(255,255,255,0.7)",color:filter===f?"#fff":"#6B7280",border:"1px solid rgba(214,122,74,0.2)",fontSize:"0.8125rem",borderRadius:12}}>
                   {f.charAt(0).toUpperCase()+f.slice(1)}
                 </button>
               ))}
@@ -29,7 +29,7 @@ export default function Community() {
           </div>
           <div style={{display:"flex",flexDirection:"column",gap:"0.75rem"}}>
             {filtered.map(p=>(
-              <motion.div key={p.id} whileHover={{x:3}} style={{display:"flex",alignItems:"center",gap:"1rem",padding:"1rem 1.25rem",borderRadius:16,background:p.status==="flagged"?"rgba(239,68,68,0.05)":"rgba(124,154,126,0.04)",border:"1px solid "+(p.status==="flagged"?"rgba(239,68,68,0.2)":"rgba(124,154,126,0.12)")}}>
+              <motion.div key={p.id} whileHover={{x:3}} style={{display:"flex",alignItems:"center",gap:"1rem",padding:"1rem 1.25rem",borderRadius:16,background:p.status==="flagged"?"rgba(239,68,68,0.05)":"rgba(214,122,74,0.04)",border:"1px solid "+(p.status==="flagged"?"rgba(239,68,68,0.2)":"rgba(214,122,74,0.12)")}}>
                 <div style={{flex:1,minWidth:0}}>
                   <p style={{fontWeight:600,color:"#1F2937",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{p.title}</p>
                   <p style={{fontSize:"0.75rem",color:"#9CA3AF",marginTop:2}}>by {p.user} &middot; {p.date} &middot; {p.likes} likes &middot; {p.views} views</p>

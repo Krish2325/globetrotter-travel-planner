@@ -31,7 +31,7 @@ export default function Login() {
       <div className="hidden lg:flex" style={{
         width:'45%', position:'relative', flexDirection:'column',
         alignItems:'center', justifyContent:'center', padding:'4rem',
-        background:'linear-gradient(145deg,#1E5E52 0%,#2E7D6B 55%,#3D9B85 100%)', overflow:'hidden'
+        background:'linear-gradient(145deg,#B33E1A 0%,#F2683A 55%,#FB8A4C 100%)', overflow:'hidden'
       }}>
         <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80"
           alt="Travel" style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', opacity:0.15 }} />
@@ -76,10 +76,10 @@ export default function Login() {
         <motion.div style={{ width:'100%', maxWidth:420 }}
           initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.5, delay:0.1 }}>
           <div className="lg:hidden" style={{ textAlign:'center', marginBottom:'2rem' }}>
-            <div style={{ width:56, height:56, borderRadius:18, background:'linear-gradient(135deg,#1E5E52,#2E7D6B)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 0.75rem' }}>
+            <div style={{ width:56, height:56, borderRadius:18, background:'linear-gradient(135deg,#B33E1A,#F2683A)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 0.75rem' }}>
               <Shield size={28} color="#fff" />
             </div>
-            <h1 style={{ fontFamily:'Poppins,sans-serif', fontWeight:800, fontSize:'1.25rem', color:'#1E5E52' }}>Globetrotter Admin</h1>
+            <h1 style={{ fontFamily:'Poppins,sans-serif', fontWeight:800, fontSize:'1.25rem', color:'#B33E1A' }}>Globetrotter Admin</h1>
           </div>
 
           <h2 style={{ fontFamily:'Poppins,sans-serif', fontWeight:700, fontSize:'1.875rem', color:'#1F2937', marginBottom:'0.25rem' }}>Admin Sign In</h2>

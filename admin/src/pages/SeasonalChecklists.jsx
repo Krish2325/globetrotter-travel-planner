@@ -44,7 +44,7 @@ export default function SeasonalChecklists() {
       <div className="rg-checklist">
         <div style={{display:"flex",flexDirection:"column",gap:"0.625rem"}}>
           {templates.map(t=>(
-            <motion.div key={t.id} onClick={()=>{ setSelId(t.id); setOpenCat(null); }} whileHover={{x:4}} style={{...card,padding:"1rem",cursor:"pointer",borderRadius:16,background:selId===t.id?"rgba(46,125,107,0.1)":"rgba(255,255,255,0.65)",border:"1px solid "+(selId===t.id?"rgba(46,125,107,0.4)":"rgba(124,154,126,0.18)")}}>
+            <motion.div key={t.id} onClick={()=>{ setSelId(t.id); setOpenCat(null); }} whileHover={{x:4}} style={{...card,padding:"1rem",cursor:"pointer",borderRadius:16,background:selId===t.id?"rgba(242,104,58,0.1)":"rgba(255,255,255,0.65)",border:"1px solid "+(selId===t.id?"rgba(242,104,58,0.4)":"rgba(214,122,74,0.18)")}}>
               <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
                 <div><p style={{fontWeight:700,fontSize:"0.9rem",color:"#1F2937"}}>{t.season} — {t.type}</p><p style={{fontSize:"0.75rem",color:"#9CA3AF",marginTop:2}}>{Object.values(t.categories).flat().length} items</p></div>
                 <span className="badge badge-sage">{t.season}</span>
@@ -59,11 +59,11 @@ export default function SeasonalChecklists() {
             </div>
             <div style={{display:"flex",flexDirection:"column",gap:"0.75rem"}}>
               {Object.entries(sel.categories).map(([cat,items])=>(
-                <div key={cat} style={{borderRadius:16,border:"1px solid rgba(124,154,126,0.15)",overflow:"hidden"}}>
+                <div key={cat} style={{borderRadius:16,border:"1px solid rgba(214,122,74,0.15)",overflow:"hidden"}}>
                   <button onClick={()=>setOpenCat(openCat===cat?null:cat)}
-                    style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0.875rem 1rem",background:"rgba(124,154,126,0.06)",border:"none",cursor:"pointer",textAlign:"left"}}>
+                    style={{width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0.875rem 1rem",background:"rgba(214,122,74,0.06)",border:"none",cursor:"pointer",textAlign:"left"}}>
                     <div style={{display:"flex",alignItems:"center",gap:8}}>
-                      <CheckSquare size={15} color="#2E7D6B"/>
+                      <CheckSquare size={15} color="#F2683A"/>
                       <span style={{fontWeight:700,color:"#1F2937",fontSize:"0.875rem"}}>{cat}</span>
                       <span style={{fontSize:"0.7rem",color:"#9CA3AF"}}>({items.length} items)</span>
                     </div>
@@ -74,8 +74,8 @@ export default function SeasonalChecklists() {
                       <motion.div initial={{height:0,opacity:0}} animate={{height:"auto",opacity:1}} exit={{height:0,opacity:0}} style={{overflow:"hidden"}}>
                         <div style={{padding:"0.75rem 1rem",display:"flex",flexDirection:"column",gap:"0.5rem"}}>
                           {items.map((item,i)=>(
-                            <div key={i} style={{display:"flex",alignItems:"center",gap:"0.75rem",padding:"0.5rem 0.75rem",borderRadius:12,background:i%2===0?"rgba(124,154,126,0.04)":"transparent"}}>
-                              <CheckSquare size={13} color="#A7C4A0"/>
+                            <div key={i} style={{display:"flex",alignItems:"center",gap:"0.75rem",padding:"0.5rem 0.75rem",borderRadius:12,background:i%2===0?"rgba(214,122,74,0.04)":"transparent"}}>
+                              <CheckSquare size={13} color="#FFC9A3"/>
                               <span style={{flex:1,fontSize:"0.875rem",color:"#1F2937"}}>{item}</span>
                               <button onClick={()=>deleteItem(cat,i)} className="btn-icon" style={{width:24,height:24,borderRadius:8}}><Trash2 size={11} color="#EF4444"/></button>
                             </div>

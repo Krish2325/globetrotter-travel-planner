@@ -25,18 +25,18 @@ export default function Profile() {
           <motion.div style={card} initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:0.1}}>
             <div style={{padding:"2rem",textAlign:"center"}}>
               <div style={{position:"relative",display:"inline-block",marginBottom:"1rem"}}>
-                <div style={{width:96,height:96,borderRadius:"50%",background:"linear-gradient(135deg,#1E5E52,#2E7D6B,#3D9B85)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"2.5rem",fontWeight:800,color:"#fff",margin:"0 auto",boxShadow:"0 8px 24px rgba(46,125,107,0.35)"}}>
+                <div style={{width:96,height:96,borderRadius:"50%",background:"linear-gradient(135deg,#B33E1A,#F2683A,#FB8A4C)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"2.5rem",fontWeight:800,color:"#fff",margin:"0 auto",boxShadow:"0 8px 24px rgba(242,104,58,0.35)"}}>
                   {form.name[0].toUpperCase()}
                 </div>
-                <button style={{position:"absolute",bottom:0,right:0,width:30,height:30,borderRadius:"50%",background:"linear-gradient(135deg,#2E7D6B,#3D9B85)",border:"3px solid #F7F6F2",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer"}}>
+                <button style={{position:"absolute",bottom:0,right:0,width:30,height:30,borderRadius:"50%",background:"linear-gradient(135deg,#F2683A,#FB8A4C)",border:"3px solid #F7F6F2",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer"}}>
                   <Camera size={13} color="#fff"/>
                 </button>
               </div>
               <h2 style={{fontFamily:"Poppins,sans-serif",fontWeight:700,fontSize:"1.125rem",color:"#1F2937"}}>{form.name}</h2>
               <p style={{fontSize:"0.8rem",color:"#6B7280",marginTop:4}}>{form.email}</p>
-              <div style={{display:"inline-flex",alignItems:"center",gap:6,marginTop:"0.75rem",padding:"0.3rem 0.875rem",borderRadius:20,background:"rgba(46,125,107,0.1)",border:"1px solid rgba(46,125,107,0.2)"}}>
-                <Shield size={12} color="#2E7D6B"/>
-                <span style={{fontSize:"0.7rem",fontWeight:700,color:"#2E7D6B",textTransform:"uppercase",letterSpacing:"0.06em"}}>Administrator</span>
+              <div style={{display:"inline-flex",alignItems:"center",gap:6,marginTop:"0.75rem",padding:"0.3rem 0.875rem",borderRadius:20,background:"rgba(242,104,58,0.1)",border:"1px solid rgba(242,104,58,0.2)"}}>
+                <Shield size={12} color="#F2683A"/>
+                <span style={{fontSize:"0.7rem",fontWeight:700,color:"#F2683A",textTransform:"uppercase",letterSpacing:"0.06em"}}>Administrator</span>
               </div>
               <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:6,marginTop:"0.875rem",fontSize:"0.8rem",color:"#9CA3AF"}}>
                 <MapPin size={13} color="#9CA3AF"/>{form.city}
@@ -49,8 +49,8 @@ export default function Profile() {
               <p className="section-title" style={{marginBottom:"1rem"}}>Activity Stats</p>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"0.75rem"}}>
                 {STATS.map(s=>(
-                  <div key={s.label} style={{padding:"0.875rem",borderRadius:16,background:"rgba(124,154,126,0.07)",border:"1px solid rgba(124,154,126,0.15)",textAlign:"center"}}>
-                    <p style={{fontSize:"1.375rem",fontWeight:800,fontFamily:"Poppins,sans-serif",color:"#2E7D6B"}}>{s.val}</p>
+                  <div key={s.label} style={{padding:"0.875rem",borderRadius:16,background:"rgba(214,122,74,0.07)",border:"1px solid rgba(214,122,74,0.15)",textAlign:"center"}}>
+                    <p style={{fontSize:"1.375rem",fontWeight:800,fontFamily:"Poppins,sans-serif",color:"#F2683A"}}>{s.val}</p>
                     <p style={{fontSize:"0.65rem",color:"#9CA3AF",marginTop:2,lineHeight:1.3}}>{s.label}</p>
                   </div>
                 ))}

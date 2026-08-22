@@ -39,7 +39,7 @@ export default function Signup() {
       <motion.div style={{ width:'100%', maxWidth:460 }}
         initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }}>
         <div style={{ textAlign:'center', marginBottom:'2rem' }}>
-          <div style={{ width:60, height:60, borderRadius:20, background:'linear-gradient(135deg,#1E5E52,#2E7D6B)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 0.75rem', boxShadow:'0 8px 24px rgba(46,125,107,0.3)' }}>
+          <div style={{ width:60, height:60, borderRadius:20, background:'linear-gradient(135deg,#B33E1A,#F2683A)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 0.75rem', boxShadow:'0 8px 24px rgba(242,104,58,0.3)' }}>
             <Shield size={30} color="#fff" />
           </div>
           <h1 style={{ fontFamily:'Poppins,sans-serif', fontWeight:800, fontSize:'1.875rem', color:'#1F2937' }}>Create Admin Account</h1>
@@ -128,7 +128,7 @@ export default function Signup() {
             <div className="divider" />
             <p style={{ textAlign:'center', fontSize:'0.875rem', color:'#6B7280' }}>
               Already have an account?{' '}
-              <Link to="/login" style={{ color:'#2E7D6B', fontWeight:600, textDecoration:'none', display:'inline-flex', alignItems:'center', gap:'0.25rem' }}>Sign in <ArrowRight size={14} /></Link>
+              <Link to="/login" style={{ color:'#F2683A', fontWeight:600, textDecoration:'none', display:'inline-flex', alignItems:'center', gap:'0.25rem' }}>Sign in <ArrowRight size={14} /></Link>
             </p>
           </div>
         )}

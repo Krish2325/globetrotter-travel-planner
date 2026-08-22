@@ -8,7 +8,7 @@ export default function ManageUsers(){
   const [users,setUsers]=useState([]);const [loading,setLoading]=useState(true);const [q,setQ]=useState("");const [roleF,setRoleF]=useState("All");
   useEffect(()=>{ api.get("/analytics/users").then(({data})=>setUsers(data)).catch(()=>{}).finally(()=>setLoading(false)); },[]);
   const filtered=users.filter(u=>(roleF==="All"||u.role===roleF)&&(u.name.toLowerCase().includes(q.toLowerCase())||u.email.toLowerCase().includes(q.toLowerCase())));
-  const STATS=[{label:"Total Users",value:users.length,icon:Users,color:"#2E7D6B"},{label:"Active",value:users.filter(u=>u.status==="active").length,icon:UserCheck,color:"#22C55E"},{label:"Admins",value:users.filter(u=>u.role==="ADMIN").length,icon:Shield,color:"#7C3AED"},{label:"Verified",value:users.filter(u=>u.isEmailVerified).length,icon:UserCheck,color:"#0369A1"}];
+  const STATS=[{label:"Total Users",value:users.length,icon:Users,color:"#F2683A"},{label:"Active",value:users.filter(u=>u.status==="active").length,icon:UserCheck,color:"#22C55E"},{label:"Admins",value:users.filter(u=>u.role==="ADMIN").length,icon:Shield,color:"#7C3AED"},{label:"Verified",value:users.filter(u=>u.isEmailVerified).length,icon:UserCheck,color:"#0369A1"}];
   return(
     <div style={{display:"flex",flexDirection:"column",gap:"1.5rem"}}>
       <motion.div initial={{opacity:0,y:-12}} animate={{opacity:1,y:0}} style={{display:"flex",alignItems:"flex-start",justifyContent:"space-between",flexWrap:"wrap",gap:"1rem"}}>
@@ -35,7 +35,7 @@ export default function ManageUsers(){
                 <tbody>
                   {filtered.map(u=>(
                     <tr key={u.id}>
-                      <td><div style={{display:"flex",alignItems:"center",gap:"0.75rem"}}><div style={{width:36,height:36,borderRadius:"50%",background:"linear-gradient(135deg,#2E7D6B,#3D9B85)",display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontWeight:700,fontSize:"0.875rem",flexShrink:0}}>{u.name[0]}</div><span style={{fontWeight:600,color:"#1F2937"}}>{u.name}</span></div></td>
+                      <td><div style={{display:"flex",alignItems:"center",gap:"0.75rem"}}><div style={{width:36,height:36,borderRadius:"50%",background:"linear-gradient(135deg,#F2683A,#FB8A4C)",display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",fontWeight:700,fontSize:"0.875rem",flexShrink:0}}>{u.name[0]}</div><span style={{fontWeight:600,color:"#1F2937"}}>{u.name}</span></div></td>
                       <td style={{color:"#6B7280",fontSize:"0.8rem"}}>{u.email}</td>
                       <td><span className={"badge "+(u.role==="ADMIN"?"badge-teal":"badge-cream")}>{u.role}</span></td>
                       <td style={{fontWeight:700,color:"#1F2937"}}>{u.trips}</td>

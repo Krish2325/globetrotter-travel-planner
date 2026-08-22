@@ -104,18 +104,18 @@ export default function ManageCities() {
           <input className="input" placeholder="Search cities..." style={{paddingLeft:40}} value={q} onChange={e=>setQ(e.target.value)}/>
         </div>
         {["All","Domestic","International"].map(t=>(
-          <button key={t} onClick={()=>setType(t)} className="btn" style={{background:type===t?"linear-gradient(135deg,#2E7D6B,#3D9B85)":"rgba(255,255,255,0.7)",color:type===t?"#fff":"#6B7280",border:"1px solid rgba(124,154,126,0.2)"}}>
+          <button key={t} onClick={()=>setType(t)} className="btn" style={{background:type===t?"linear-gradient(135deg,#F2683A,#FB8A4C)":"rgba(255,255,255,0.7)",color:type===t?"#fff":"#6B7280",border:"1px solid rgba(214,122,74,0.2)"}}>
             {t}
           </button>
         ))}
       </div>
       
       {loading ? (
-        <div style={{textAlign:"center", padding:"3rem"}}><Loader className="spin" size={24} color="#2E7D6B" style={{margin:"0 auto"}}/></div>
+        <div style={{textAlign:"center", padding:"3rem"}}><Loader className="spin" size={24} color="#F2683A" style={{margin:"0 auto"}}/></div>
       ) : (
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))",gap:"1rem"}}>
           {filtered.map((c,i)=>(
-            <motion.div key={c.id} style={card} initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:i*0.06}} whileHover={{y:-4,boxShadow:"0 16px 48px rgba(46,125,107,0.12)"}}>
+            <motion.div key={c.id} style={card} initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{delay:i*0.06}} whileHover={{y:-4,boxShadow:"0 16px 48px rgba(242,104,58,0.12)"}}>
               <div style={{height:140,overflow:"hidden",borderRadius:"24px 24px 0 0",position:"relative", background:"#e5e7eb"}}>
                 {c.imageUrl && <img src={c.imageUrl} alt={c.name} style={{width:"100%",height:"100%",objectFit:"cover"}}/>}
                 <div style={{position:"absolute",inset:0,background:"linear-gradient(to top,rgba(0,0,0,0.4),transparent)"}}/>
@@ -126,7 +126,7 @@ export default function ManageCities() {
               </div>
               <div style={{padding:"1rem"}}>
                 <div style={{display:"flex",alignItems:"center",justifyContent:"space-between"}}>
-                  <div style={{display:"flex",alignItems:"center",gap:6,fontSize:"0.8rem",color:"#6B7280"}}><MapPin size={13} color="#2E7D6B"/>{c.latitude.toFixed(2)}, {c.longitude.toFixed(2)}</div>
+                  <div style={{display:"flex",alignItems:"center",gap:6,fontSize:"0.8rem",color:"#6B7280"}}><MapPin size={13} color="#F2683A"/>{c.latitude.toFixed(2)}, {c.longitude.toFixed(2)}</div>
                   <span className={"badge "+(getCityType(c.countryCode)==="Domestic"?"badge-cream":"badge-teal")}>{getCityType(c.countryCode)}</span>
                 </div>
                 <div style={{display:"flex", gap:"0.5rem", marginTop:"0.75rem"}}>
