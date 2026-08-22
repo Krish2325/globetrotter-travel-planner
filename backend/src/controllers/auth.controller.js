@@ -7,6 +7,8 @@ const prisma = require('../lib/prisma');
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const isValidEmail = (e) => EMAIL_RE.test(String(e).toLowerCase());
 
+const EMAIL_TOKEN_TTL_MS = 24 * 60 * 60 * 1000; // matches the "expires in 24 hours" copy in the verification email
+
 const signToken = (userId) =>
   jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN || '7d',
@@ -33,7 +35,10 @@ exports.signup = async (req, res) => {
     const emailToken = uuidv4();
 
     const user = await prisma.user.create({
-      data: { name, email: email.toLowerCase(), passwordHash, emailToken },
+      data: {
+        name, email: email.toLowerCase(), passwordHash, emailToken,
+        emailTokenExpiresAt: new Date(Date.now() + EMAIL_TOKEN_TTL_MS),
+      },
     });
 
     try {
@@ -86,7 +91,10 @@ exports.adminSignup = async (req, res) => {
     const emailToken = uuidv4();
 
     const user = await prisma.user.create({
-      data: { name, email: email.toLowerCase(), passwordHash, emailToken, role: 'ADMIN' },
+      data: {
+        name, email: email.toLowerCase(), passwordHash, emailToken, role: 'ADMIN',
+        emailTokenExpiresAt: new Date(Date.now() + EMAIL_TOKEN_TTL_MS),
+      },
     });
 
     const token = signToken(user.id);
@@ -145,9 +153,14 @@ exports.verifyEmail = async (req, res) => {
     const user = await prisma.user.findUnique({ where: { emailToken: token } });
     if (!user) return res.status(400).json({ error: 'Invalid or expired token' });
 
+    if (user.emailTokenExpiresAt && user.emailTokenExpiresAt < new Date()) {
+      await prisma.user.update({ where: { id: user.id }, data: { emailToken: null, emailTokenExpiresAt: null } });
+      return res.status(400).json({ error: 'Invalid or expired token' });
+    }
+
     await prisma.user.update({
       where: { id: user.id },
-      data: { isEmailVerified: true, emailToken: null },
+      data: { isEmailVerified: true, emailToken: null, emailTokenExpiresAt: null },
     });
     res.json({ message: 'Email verified successfully' });
   } catch (err) {
