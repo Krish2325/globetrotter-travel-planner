@@ -55,6 +55,7 @@ Recently updated to feature enterprise-grade security headers, robust request va
 |---|---|
 | **Frontend** | React, Vite, Framer Motion, Tailwind CSS v3, Lucide-React |
 | **Admin Panel** | React, Vite, Recharts (Analytics), Axios Interceptors |
+| **Theme** | Sunset Coral palette, Sora (display) + Manrope (body) typography |
 | **Backend** | Node.js, Express, Helmet (Security), CORS, Rate Limiting |
 | **ORM & DB** | Prisma ORM, SQLite (Local Dev) / MySQL (Production Ready) |
 | **Auth** | JWT (JSON Web Tokens), bcryptjs, Role-Based Access Control (RBAC) |
