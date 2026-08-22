@@ -1,7 +1,8 @@
 const prisma = require('../lib/prisma');
+const { handleError } = require('../lib/errors');
 
 // ── Admin: Get ALL trips (not just current user's) ────────────────────────────
-exports.adminGetAllTrips = async (req, res) => {
+exports.adminGetAllTrips = async (req, res, next) => {
   try {
     const { q, status, page = 1, limit = 50 } = req.query;
     const skip = (parseInt(page) - 1) * parseInt(limit);
@@ -19,11 +20,11 @@ exports.adminGetAllTrips = async (req, res) => {
       prisma.trip.count({ where }),
     ]);
     res.json({ trips, total, page: parseInt(page), limit: parseInt(limit) });
-  } catch (err) { res.status(500).json({ error: err.message }); }
+  } catch (err) { handleError(err, res, next); }
 };
 
 // ── Admin: Create trip (no userId requirement — admin can create catalog trips) ─
-exports.adminCreateTrip = async (req, res) => {
+exports.adminCreateTrip = async (req, res, next) => {
   try {
     const { title, description, startDate, endDate, coverImage, isPublic, startingLocation,
       destination, durationDays, packageType, basePrice, bestSeason, images,
@@ -53,11 +54,11 @@ exports.adminCreateTrip = async (req, res) => {
       },
     });
     res.status(201).json(trip);
-  } catch (err) { res.status(500).json({ error: err.message }); }
+  } catch (err) { handleError(err, res, next); }
 };
 
 // ── Admin: Update any trip ─────────────────────────────────────────────────────
-exports.adminUpdateTrip = async (req, res) => {
+exports.adminUpdateTrip = async (req, res, next) => {
   try {
     const trip = await prisma.trip.findUnique({ where: { id: req.params.id } });
     if (!trip) return res.status(404).json({ error: 'Trip not found' });
@@ -77,21 +78,21 @@ exports.adminUpdateTrip = async (req, res) => {
 
     const updated = await prisma.trip.update({ where: { id: req.params.id }, data });
     res.json(updated);
-  } catch (err) { res.status(500).json({ error: err.message }); }
+  } catch (err) { handleError(err, res, next); }
 };
 
 // ── Admin: Delete any trip ─────────────────────────────────────────────────────
-exports.adminDeleteTrip = async (req, res) => {
+exports.adminDeleteTrip = async (req, res, next) => {
   try {
     const trip = await prisma.trip.findUnique({ where: { id: req.params.id } });
     if (!trip) return res.status(404).json({ error: 'Trip not found' });
     await prisma.trip.delete({ where: { id: req.params.id } });
     res.json({ message: 'Trip deleted successfully' });
-  } catch (err) { res.status(500).json({ error: err.message }); }
+  } catch (err) { handleError(err, res, next); }
 };
 
 // ── User: Get own trips ────────────────────────────────────────────────────────
-exports.getTrips = async (req, res) => {
+exports.getTrips = async (req, res, next) => {
   try {
     const trips = await prisma.trip.findMany({
       where: { userId: req.user.id },
@@ -99,11 +100,11 @@ exports.getTrips = async (req, res) => {
       orderBy: { createdAt: 'desc' },
     });
     res.json(trips);
-  } catch (err) { res.status(500).json({ error: err.message }); }
+  } catch (err) { handleError(err, res, next); }
 };
 
 // ── User: Get public/available trips (for discovery) ──────────────────────────
-exports.getPublicTrips = async (req, res) => {
+exports.getPublicTrips = async (req, res, next) => {
   try {
     const { q, season, type, sort = 'popularity' } = req.query;
     const where = { OR: [{ isPublic: true }, { status: 'AVAILABLE' }] };
@@ -121,10 +122,10 @@ exports.getPublicTrips = async (req, res) => {
       take: 50,
     });
     res.json(trips);
-  } catch (err) { res.status(500).json({ error: err.message }); }
+  } catch (err) { handleError(err, res, next); }
 };
 
-exports.getTripById = async (req, res) => {
+exports.getTripById = async (req, res, next) => {
   try {
     const trip = await prisma.trip.findFirst({
       where: { id: req.params.id, userId: req.user.id },
@@ -140,10 +141,10 @@ exports.getTripById = async (req, res) => {
     });
     if (!trip) return res.status(404).json({ error: 'Trip not found' });
     res.json(trip);
-  } catch (err) { res.status(500).json({ error: err.message }); }
+  } catch (err) { handleError(err, res, next); }
 };
 
-exports.createTrip = async (req, res) => {
+exports.createTrip = async (req, res, next) => {
   try {
     const { title, description, startDate, endDate, coverImage, isPublic, startingLocation,
       destination, durationDays, packageType, basePrice, bestSeason, images,
@@ -171,10 +172,10 @@ exports.createTrip = async (req, res) => {
       },
     });
     res.status(201).json(trip);
-  } catch (err) { res.status(500).json({ error: err.message }); }
+  } catch (err) { handleError(err, res, next); }
 };
 
-exports.updateTrip = async (req, res) => {
+exports.updateTrip = async (req, res, next) => {
   try {
     const trip = await prisma.trip.findFirst({ where: { id: req.params.id, userId: req.user.id } });
     if (!trip) return res.status(404).json({ error: 'Trip not found' });
@@ -189,14 +190,14 @@ exports.updateTrip = async (req, res) => {
     dates.forEach(f => { if (req.body[f]) data[f] = new Date(req.body[f]); });
     const updated = await prisma.trip.update({ where: { id: req.params.id }, data });
     res.json(updated);
-  } catch (err) { res.status(500).json({ error: err.message }); }
+  } catch (err) { handleError(err, res, next); }
 };
 
-exports.deleteTrip = async (req, res) => {
+exports.deleteTrip = async (req, res, next) => {
   try {
     const trip = await prisma.trip.findFirst({ where: { id: req.params.id, userId: req.user.id } });
     if (!trip) return res.status(404).json({ error: 'Trip not found' });
     await prisma.trip.delete({ where: { id: req.params.id } });
     res.json({ message: 'Trip deleted' });
-  } catch (err) { res.status(500).json({ error: err.message }); }
+  } catch (err) { handleError(err, res, next); }
 };

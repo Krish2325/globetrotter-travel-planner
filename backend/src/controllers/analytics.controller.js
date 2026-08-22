@@ -1,7 +1,8 @@
 const prisma = require('../lib/prisma');
+const { handleError } = require('../lib/errors');
 
 // ── GET /api/analytics/dashboard  (admin) ────────────────────────────────────
-exports.getDashboardAnalytics = async (req, res) => {
+exports.getDashboardAnalytics = async (req, res, next) => {
   try {
     const [totalUsers, activeTrips, citiesListed, activitiesCount, totalTrips, communityPosts] =
       await prisma.$transaction([
@@ -29,11 +30,11 @@ exports.getDashboardAnalytics = async (req, res) => {
     })).map(u => ({ ...u, joined: u.createdAt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) }));
 
     res.json({ stats: { totalUsers, activeTrips, citiesListed, activitiesCount, totalTrips, communityPosts }, recentTrips, recentUsers });
-  } catch (err) { res.status(500).json({ error: err.message }); }
+  } catch (err) { handleError(err, res, next); }
 };
 
 // ── GET /api/analytics/users  (admin) ────────────────────────────────────────
-exports.getUserAnalytics = async (req, res) => {
+exports.getUserAnalytics = async (req, res, next) => {
   try {
     const users = await prisma.user.findMany({
       orderBy: { createdAt: 'desc' },
@@ -44,11 +45,11 @@ exports.getUserAnalytics = async (req, res) => {
       joined: u.createdAt.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
       status: 'active',
     })));
-  } catch (err) { res.status(500).json({ error: err.message }); }
+  } catch (err) { handleError(err, res, next); }
 };
 
 // ── GET /api/analytics/community  (admin) ────────────────────────────────────
-exports.getCommunityAnalytics = async (req, res) => {
+exports.getCommunityAnalytics = async (req, res, next) => {
   try {
     const posts = await prisma.communityShare.findMany({
       orderBy: { createdAt: 'desc' },
@@ -59,5 +60,5 @@ exports.getCommunityAnalytics = async (req, res) => {
       user: p.user?.name || 'Unknown', trip: p.trip?.title, status: 'active',
       date: p.createdAt.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }),
     })));
-  } catch (err) { res.status(500).json({ error: err.message }); }
+  } catch (err) { handleError(err, res, next); }
 };
